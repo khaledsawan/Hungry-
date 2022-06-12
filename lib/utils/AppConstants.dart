@@ -6,7 +6,7 @@ class AppConstants {
                    /*  for api   */
 
   //for base Uri
-  static const String BASE_URL = "http://192.168.1.5:8000";
+  static const String BASE_URL = "http://mvs.bslmeiyu.com";//http://mvs.bslmeiyu.com
 
   //for product
   static const String POPULAR_PRODUCT_URL = "/api/v1/products/popular";
@@ -24,8 +24,12 @@ class AppConstants {
   static const String ADDRESS_LIST_URI = "/api/v1/customer/address/list";
   static const String SEARCH_LOCATION_URI = '/api/v1/config/place-api-autocomplete';
   static const String PLACE_DETATLS_URI = '/api/v1/config/place-api-details';
+ /*
+ Order config
+  */
+  static const String PLACE_ORDER_URI = '/api/v1/customer/order/place';
 
-                  /*  for local storage   */
+  /*  for local storage   */
 
   //for Auth
   static const String TOKEN = "token";

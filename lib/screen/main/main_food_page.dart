@@ -38,20 +38,26 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 children: [
                   Column(
                     children: [
-                      BigText(
-                        textbody: 'bungled',
-                        color: AppColors.mainColor,
+                      Container(
+                        margin:EdgeInsets.only(left: 8),
+                        child: BigText(
+                          textbody: 'Syria',
+                          color: AppColors.mainColor,
+                        ),
                       ),
-                      Row(
-                        children: [
-                          SmailText(
-                            textbody: 'city',
-                            color: Colors.black,
-                          ),
-                          const Icon(
-                            Icons.arrow_drop_down_rounded,
-                          ),
-                        ],
+                      Container(
+                        margin:EdgeInsets.only(left: 8),
+                        child: Row(
+                          children: [
+                            SmailText(
+                              textbody: 'city',
+                              color: Colors.black,
+                            ),
+                            const Icon(
+                              Icons.arrow_drop_down_rounded,
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -60,6 +66,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     width: 40,
                     child: const Icon(
                       Icons.search,
+                      size: 30,
                       color: Colors.white,
                     ),
                     decoration: BoxDecoration(

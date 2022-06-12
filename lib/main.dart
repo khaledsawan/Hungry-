@@ -6,6 +6,8 @@ import 'package:shop_delivery_system/Controller/popular_products_controller.dart
 import 'package:shop_delivery_system/init/init.dart';
 import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/screen/Testing/test.dart';
+import 'package:shop_delivery_system/screen/payment/payment_page.dart';
+import 'package:shop_delivery_system/services/model/order_model.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
 
 void main() async {
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primaryColor: AppColors.mainColor,
           ),
-          //home: Test(),
+         // home: PaymentPage(orderModel: OrderModel(id: 123,userId: 1),),
           initialRoute: AppRoutes.SplashScreen,
           getPages: AppRoutes.routes,
         );

@@ -201,9 +201,9 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                     child: Column(
                       children: [
                         Container(
-                            height: height * 0.5,
-                            width: width * 0.7,
-                            child: Image.asset("assets/image/empty_box.png")),
+                            height: height * 0.4,
+                            width: width * 0.6,
+                            child: Image.asset("assets/image/empty_cart.png")),
                         BigText(
                           textbody: 'you are not order anything yet',
                           color: AppColors.textColor,

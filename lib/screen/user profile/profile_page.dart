@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_delivery_system/controller/address_controller.dart';
-import 'package:shop_delivery_system/screen/location/add_address_page.dart';
 import 'package:shop_delivery_system/utils/AppConstants.dart';
 import '../../Controller/auth_controller.dart';
 import '../../Controller/cart_controller.dart';
@@ -29,8 +28,8 @@ class _ProfilePageState extends State<ProfilePage> {
     SharedPreferences sharedPreferences = Get.find();
     print('token is =>' +
         sharedPreferences.getString(AppConstants.TOKEN).toString());
-    _logout(
-        AuthController authController, CartController cartController, AddressController addresscontroller) async {
+    _logout(AuthController authController, CartController cartController,
+        AddressController addresscontroller) async {
       await authController.clearUserAuth();
       await cartController.clearsharedpreferences();
       addresscontroller.clearAddressList();
@@ -182,22 +181,25 @@ class _ProfilePageState extends State<ProfilePage> {
                                   margin: const EdgeInsets.only(
                                       top: 15, left: 10, right: 10),
                                   padding: const EdgeInsets.all(8),
-                                  child: GetBuilder<AddressController>(builder: (addressController){
-                                    if(_isLogin&&addressController.addressTypeList.isEmpty){
-                                      return Icon_Than_Text(
-                                        icon: Icons.location_on_outlined,
-                                        text: "Add your Address",
-                                        color: AppColors.yellowColor,
-                                      );
-                                    }else{
-                                      return Icon_Than_Text(
-                                        icon: Icons.location_on_outlined,
-                                        text: "your Address",
-                                        color: AppColors.yellowColor,
-                                      );
-                                    }
-
-                                  },)),
+                                  child: GetBuilder<AddressController>(
+                                    builder: (addressController) {
+                                      if (_isLogin &&
+                                          addressController
+                                              .addressTypeList.isEmpty) {
+                                        return Icon_Than_Text(
+                                          icon: Icons.location_on_outlined,
+                                          text: "Add your Address",
+                                          color: AppColors.yellowColor,
+                                        );
+                                      } else {
+                                        return Icon_Than_Text(
+                                          icon: Icons.location_on_outlined,
+                                          text: "your Address",
+                                          color: AppColors.yellowColor,
+                                        );
+                                      }
+                                    },
+                                  )),
                             ),
                             Container(
                                 decoration: BoxDecoration(
@@ -226,9 +228,11 @@ class _ProfilePageState extends State<ProfilePage> {
                               onTap: () {
                                 AuthController authController = Get.find();
                                 CartController cartController = Get.find();
-                                AddressController addresscontroller = Get.find();
+                                AddressController addresscontroller =
+                                    Get.find();
 
-                                _logout(authController, cartController,addresscontroller);
+                                _logout(authController, cartController,
+                                    addresscontroller);
                                 Get.offNamed(AppRoutes.LoginPage);
                               },
                               child: Container(
@@ -273,7 +277,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     SizedBox(
                       height: height * 0.05,
                     ),
-                    Image.asset('assets/image/signintocontinue.png'),
+                    Center(
+                      child: Container(
+                        width: width-20,
+                          height: height*0.25,
+                          child: Image.asset('assets/image/notlogin.png')),
+                    ),SizedBox(
+                      height: height * 0.02,
+                    ),
                     Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
@@ -314,9 +325,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onTap: () {
                                   Get.toNamed(AppRoutes.LoginPage);
                                 },
-                                child: const Icon(
+                                child:  Icon(
                                   Icons.login_outlined,
-                                  color: Colors.blueAccent,
+                                  color: AppColors.yellowColor,
                                   size: 30,
                                 )),
                           ],

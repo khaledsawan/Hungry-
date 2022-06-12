@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_delivery_system/Controller/auth_controller.dart';
 import 'package:shop_delivery_system/Controller/cart_controller.dart';
+import 'package:shop_delivery_system/Controller/user_profile_controller.dart';
 import 'package:shop_delivery_system/Services/model/cart_modle.dart';
 import 'package:shop_delivery_system/controller/address_controller.dart';
+import 'package:shop_delivery_system/controller/place_order_controller.dart';
 import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/screen/cart/cart_history_page.dart';
+import 'package:shop_delivery_system/services/model/place_order_model.dart';
 import 'package:shop_delivery_system/widgets/App_Icons/app_icons.dart';
 import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar.dart';
 import 'package:shop_delivery_system/widgets/text/big_text.dart';
@@ -57,17 +60,35 @@ class _CartPageState extends State<CartPage> {
                       onTap: () {
                         if (Get.find<AuthController>().isAuth()) {
                           cartcontroller.addToHistory();
-                          if (Get.find<AddressController>().addressList.isEmpty) {
+                          if (Get.find<AddressController>()
+                              .addressList
+                              .isEmpty) {
                             ShowCustomSnackpar('add your address pleas', 'ops');
                             Get.toNamed(AppRoutes.AddAddress);
-                          }else{
-                            Get.offNamed(AppRoutes.InitHome);
+                          } else {
+                            var user = Get.find<UserProfileController>()
+                                .userProfileModel;
+                            var location =
+                                Get.find<AddressController>().getUserAddress();
+                            var cart = Get.find<CartController>().cartItems;
+                            PlaceOrderModle placeOrderModle = PlaceOrderModle(
+                                latitude: location.latitude,
+                                orderAmount: 100.0,
+                                scheduleAt: '',
+                                distance: 10.0,
+                                contactPersonNumber: user!.phone.toString(),
+                                longitude: location.longitude,
+                                contactPersonName: user.fName.toString(),
+                                address: location.address,
+                                cart: cart,
+                                orderNote: 'not about the food ');
+                            Get.find<PlaceOrderController>()
+                                .placeorder(_callback, placeOrderModle);
                           }
                         } else {
                           ShowCustomSnackpar('you need to SignIn', 'ops');
                           Get.toNamed(AppRoutes.LoginPage);
                         }
-
                       },
                       child: Container(
                           width: width * 0.30,
@@ -310,5 +331,16 @@ class _CartPageState extends State<CartPage> {
         ],
       ),
     );
+  }
+}
+
+void _callback(bool isOrder, String massage, String orderId) {
+  if (isOrder) {
+    Get.offNamed(AppRoutes.Payment, arguments: [
+      {"id": orderId},
+      {"user_Id": Get.find<UserProfileController>().userProfileModel?.id!}
+    ]);
+  } else {
+    ShowCustomSnackpar(massage, '');
   }
 }
