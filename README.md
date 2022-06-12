@@ -1,3 +1,3 @@
 # flutter_food_delivery_system
 ## food delivey System with payment method (paypal) and using google map for address 
-### Android for now but web coming soon 
+### wait the paypal account to activate , for enable Billing on the Google Cloud Project and test paypal method .
