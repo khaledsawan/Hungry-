@@ -7,7 +7,6 @@ class SettingPage extends StatelessWidget {
   final List locale = [
     {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
     {'name': 'Arabic', 'locale': Locale('ar', 'SY')},
-
   ];
   updateLanguage(Locale locale) {
     Get.back();
@@ -80,10 +79,7 @@ class SettingPage extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Text(
-              'subscribe'.tr,
-              style: TextStyle(fontSize: 20),
-            ),
+
             ElevatedButton(
                 onPressed: () {
                   ChangeLanguageAlertDialog(context);
