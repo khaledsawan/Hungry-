@@ -7,6 +7,9 @@ import 'package:shop_delivery_system/screen/payment/payment_page.dart';
 import 'package:shop_delivery_system/screen/splach_screen/splash_screen.dart';
 import 'package:shop_delivery_system/screen/user%20auth/sign_in_page.dart';
 import 'package:shop_delivery_system/screen/user%20auth/sign_up_page.dart';
+import 'package:shop_delivery_system/screen/user%20profile/edit_profile_page.dart';
+import 'package:shop_delivery_system/screen/we/about_us_page.dart';
+import 'package:shop_delivery_system/screen/we/support_page.dart';
 import 'package:shop_delivery_system/services/model/order_model.dart';
 
 import '../screen/cart/cart_page.dart';
@@ -26,6 +29,9 @@ class AppRoutes {
   static const String AddressPike = "/address-pike";
   static const String Payment = "/payment";
   static const String OrderSuccess = "/ordersuccess";
+  static const String EditProfile = "/edit_profile";
+  static const String Support = "/support_page";
+  static const String Aboutpage = "/about_us_page";
 
   static String getAddressPage() => '$AddAddress';
   static final routes = [
@@ -99,5 +105,17 @@ class AppRoutes {
       },
       transition: Transition.fadeIn,
     ),
+    GetPage(
+        name: EditProfile,
+        page: () => const EditProfilePage(),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: Support,
+        page: () =>  const SupportPage(),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: Aboutpage,
+        page: () =>  const AboutUsPage(),
+        transition: Transition.fadeIn),
   ];
 }
