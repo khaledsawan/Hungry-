@@ -82,61 +82,157 @@ class SettingPage extends StatelessWidget {
                 width: width - 17,
                 height: height * 0.22,
                 child: Image.asset('assets/image/settings.png')),
-
             SizedBox(
               height: height * 0.05,
             ),
-           Container(
-             margin:const EdgeInsets.only(left: 40,right: 20),
-             child: SingleChildScrollView(
-               child: Column(
-                 children: [
-                   Icon_Than_Text(
-                        color: AppColors.mainColor,
-                        icon: Icons.language_outlined,
-                        text: 'language',
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(left: 30, right: 30),
+                padding: EdgeInsets.only(bottom: 5),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon_Than_Text(
+                            color: AppColors.mainColor,
+                            icon: Icons.language_outlined,
+                            text: 'language',
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print('tapped');
+                              ChangeLanguageAlertDialog(context);
+                            },
+                            child: SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Icon(
+                                  Icons.arrow_right_outlined,
+                                  size: 35,
+                                )),
+                          )
+                        ],
                       ),
-                   SizedBox(
-                     height: height * 0.05,
-                   ),
-                   Icon_Than_Text(
-                     color: AppColors.mainColor,
-                     icon: Icons.person,
-                     text: 'Edit profile',
-                   ),
-                   SizedBox(
-                     height: height * 0.05,
-                   ),
-                   Icon_Than_Text(
-                     color: AppColors.mainColor,
-                     icon: Icons.dark_mode_outlined,
-                     text: 'change them ',
-                   ),
-                   SizedBox(
-                     height: height * 0.05,
-                   ),
-                   Icon_Than_Text(
-                     color: AppColors.mainColor,
-                     icon: Icons.support_outlined,
-                     text: 'Support',
-                   ),
-                   SizedBox(
-                     height: height * 0.05,
-                   ),
-                   Icon_Than_Text(
-                     color: AppColors.mainColor,
-                     icon: Icons.group_outlined,
-                     text: 'about Us',
-                   ),
-                   SizedBox(
-                     height: height * 0.05,
-                   ),
+                      const Divider(color: Colors.black,),
+                      SizedBox(
+                        height: height * 0.01,
 
-                 ],
-               ),
-             ),
-           ),
-
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon_Than_Text(
+                            color: AppColors.mainColor,
+                            icon: Icons.person_outline,
+                            text: 'language',
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print('tapped');
+                              ChangeLanguageAlertDialog(context);
+                            },
+                            child: SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Icon(
+                                  Icons.arrow_right_outlined,
+                                  size: 35,
+                                )),
+                          )
+                        ],
+                      ),
+                      const Divider(color: Colors.black,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon_Than_Text(
+                            color: AppColors.mainColor,
+                            icon: Icons.dark_mode_outlined,
+                            text: 'language',
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print('tapped');
+                              ChangeLanguageAlertDialog(context);
+                            },
+                            child: SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Icon(
+                                  Icons.arrow_right_outlined,
+                                  size: 35,
+                                )),
+                          )
+                        ],
+                      ),
+                      const Divider(color: Colors.black,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon_Than_Text(
+                            color: AppColors.mainColor,
+                            icon: Icons.support_agent_outlined,
+                            text: 'language',
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print('tapped');
+                              ChangeLanguageAlertDialog(context);
+                            },
+                            child: const SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Icon(
+                                  Icons.arrow_right_outlined,
+                                  size: 35,
+                                )),
+                          )
+                        ],
+                      ),
+                      const Divider(color: Colors.black,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon_Than_Text(
+                            color: AppColors.mainColor,
+                            icon: Icons.group_outlined,
+                            text: 'language',
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print('tapped');
+                              ChangeLanguageAlertDialog(context);
+                            },
+                            child: SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Icon(
+                                  Icons.arrow_right_outlined,
+                                  size: 35,
+                                )),
+                          )
+                        ],
+                      ),
+                      const Divider(color: Colors.black,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ));
   }
