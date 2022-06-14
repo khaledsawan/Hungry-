@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shop_delivery_system/screen/cart/cart_history_page.dart';
 import 'package:shop_delivery_system/screen/cart/cart_page.dart';
 import 'package:shop_delivery_system/screen/main/main_food_page.dart';
+import 'package:shop_delivery_system/screen/setting/setting_page.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
 import 'package:shop_delivery_system/widgets/button/custom_button.dart';
 
@@ -31,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       const Center(child: Text('Archive')),
       const CartHistoryPage(),
       const ProfilePage(),
+       SettingPage(),
     ];
   }
 
@@ -42,6 +45,7 @@ class _HomePageState extends State<HomePage> {
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: AppColors.yellowColor,
       ),
+
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.archivebox_fill),
         title: ("Archie"),
@@ -60,47 +64,23 @@ class _HomePageState extends State<HomePage> {
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: AppColors.yellowColor,
       ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.settings_solid),
+        title: ("setting"),
+        activeColorPrimary: AppColors.mainColor,
+        inactiveColorPrimary: AppColors.yellowColor,
+      ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-   double width =MediaQuery.of(context).size.width;
-   double height =MediaQuery.of(context).size.height;
-    return Scaffold(
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('welcome to food delivery'),
-            ),
-            CustomButton(buttonText: 'setting',onPressed: (){print("hellow word ");},),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
-        ),
-      ),
-      body: PersistentTabView(
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return
+
+
+       PersistentTabView(
         context,
         controller: _controller,
         screens: _buildScreens(),
@@ -140,9 +120,9 @@ class _HomePageState extends State<HomePage> {
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),
         ),
-        navBarStyle:
-            NavBarStyle.style12, // Choose the nav bar style with this property.
-      ),
-    );
+        navBarStyle: NavBarStyle
+            .style12, // Choose the nav bar style with this property.
+      );
+
   }
 }

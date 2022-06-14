@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_delivery_system/utils/colors.dart';
 
 class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);
@@ -59,8 +60,14 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('title'.tr),
+          title: Center(
+              child: Text(
+            'Setting'.tr,
+            style: TextStyle(fontSize: 24),
+          )),
+          backgroundColor: AppColors.mainColor,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +86,6 @@ class SettingPage extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-
             ElevatedButton(
                 onPressed: () {
                   ChangeLanguageAlertDialog(context);
