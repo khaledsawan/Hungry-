@@ -230,7 +230,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 CartController cartController = Get.find();
                                 AddressController addresscontroller =
                                     Get.find();
-
                                 _logout(authController, cartController,
                                     addresscontroller);
                                 Get.offNamed(AppRoutes.LoginPage);
@@ -279,10 +278,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Center(
                       child: Container(
-                        width: width-20,
-                          height: height*0.25,
+                          width: width - 17,
+                          height: height * 0.22,
                           child: Image.asset('assets/image/notlogin.png')),
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: height * 0.02,
                     ),
                     Container(
@@ -325,7 +325,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onTap: () {
                                   Get.toNamed(AppRoutes.LoginPage);
                                 },
-                                child:  Icon(
+                                child: Icon(
                                   Icons.login_outlined,
                                   color: AppColors.yellowColor,
                                   size: 30,

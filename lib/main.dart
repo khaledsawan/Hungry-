@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
           title: 'food delivery System',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: AppColors.mainColor,),
-          home: SettingPage(),
-         // initialRoute: AppRoutes.SplashScreen,
-        //  getPages: AppRoutes.routes,
+         // home: SettingPage(),
+         initialRoute: AppRoutes.SplashScreen,
+          getPages: AppRoutes.routes,
 
           // language
           locale: const Locale('gu', 'IN'),
