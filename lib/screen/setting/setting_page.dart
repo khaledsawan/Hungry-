@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
 
+import '../../routes/AppRoutes.dart';
 import '../../widgets/icon_than_text/icon_than_text.dart';
 
 class SettingPage extends StatelessWidget {
@@ -102,89 +103,7 @@ class SettingPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              print('tapped');
-                              ChangeLanguageAlertDialog(context);
-                            },
-                            child: SizedBox(
-                                width: 35,
-                                height: 35,
-                                child: Icon(
-                                  Icons.arrow_right_outlined,
-                                  size: 35,
-                                )),
-                          )
-                        ],
-                      ),
-                      const Divider(color: Colors.black,),
-                      SizedBox(
-                        height: height * 0.01,
 
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon_Than_Text(
-                            color: AppColors.mainColor,
-                            icon: Icons.person_outline,
-                            text: 'language',
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              print('tapped');
-                              ChangeLanguageAlertDialog(context);
-                            },
-                            child: SizedBox(
-                                width: 35,
-                                height: 35,
-                                child: Icon(
-                                  Icons.arrow_right_outlined,
-                                  size: 35,
-                                )),
-                          )
-                        ],
-                      ),
-                      const Divider(color: Colors.black,),
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon_Than_Text(
-                            color: AppColors.mainColor,
-                            icon: Icons.dark_mode_outlined,
-                            text: 'language',
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              print('tapped');
-                              ChangeLanguageAlertDialog(context);
-                            },
-                            child: SizedBox(
-                                width: 35,
-                                height: 35,
-                                child: Icon(
-                                  Icons.arrow_right_outlined,
-                                  size: 35,
-                                )),
-                          )
-                        ],
-                      ),
-                      const Divider(color: Colors.black,),
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon_Than_Text(
-                            color: AppColors.mainColor,
-                            icon: Icons.support_agent_outlined,
-                            text: 'language',
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              print('tapped');
                               ChangeLanguageAlertDialog(context);
                             },
                             child: const SizedBox(
@@ -197,22 +116,23 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      const Divider(color: Colors.black,),
+                       Divider(color: AppColors.textColor,),
                       SizedBox(
                         height: height * 0.01,
+
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon_Than_Text(
                             color: AppColors.mainColor,
-                            icon: Icons.group_outlined,
-                            text: 'language',
+                            icon: Icons.person_outline,
+                            text: 'edit profile',
                           ),
                           GestureDetector(
                             onTap: () {
                               print('tapped');
-                              ChangeLanguageAlertDialog(context);
+                              Get.toNamed(AppRoutes.EditProfile);
                             },
                             child: SizedBox(
                                 width: 35,
@@ -224,7 +144,88 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      const Divider(color: Colors.black,),
+                       Divider(color: AppColors.textColor,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon_Than_Text(
+                            color: AppColors.mainColor,
+                            icon: Icons.dark_mode_outlined,
+                            text: 'them mode',
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print('tapped');
+                             // Get.theme.c;
+                            },
+                            child: SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Icon(
+                                  Icons.arrow_right_outlined,
+                                  size: 35,
+                                )),
+                          )
+                        ],
+                      ),
+                       Divider(color: AppColors.textColor,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon_Than_Text(
+                            color: AppColors.mainColor,
+                            icon: Icons.support_agent_outlined,
+                            text: 'support',
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print('tapped');
+                             Get.toNamed(AppRoutes.Support);
+                           },
+                            child: const SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Icon(
+                                  Icons.arrow_right_outlined,
+                                  size: 35,
+                                )),
+                          )
+                        ],
+                      ),
+                       Divider(color: AppColors.textColor,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon_Than_Text(
+                            color: AppColors.mainColor,
+                            icon: Icons.group_outlined,
+                            text: 'about us',
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              print('tapped');
+                             Get.toNamed(AppRoutes.Aboutpage);
+                            },
+                            child: SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Icon(
+                                  Icons.arrow_right_outlined,
+                                  size: 35,
+                                )),
+                          )
+                        ],
+                      ),
+                       Divider(color: AppColors.textColor,),
                       SizedBox(
                         height: height * 0.01,
                       ),
