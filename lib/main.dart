@@ -7,8 +7,10 @@ import 'package:shop_delivery_system/init/init.dart';
 import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/screen/Testing/test.dart';
 import 'package:shop_delivery_system/screen/payment/payment_page.dart';
+import 'package:shop_delivery_system/screen/setting/setting_page.dart';
 import 'package:shop_delivery_system/services/model/order_model.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
+import 'package:shop_delivery_system/utils/localeString.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,12 +28,15 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'food delivery System',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primaryColor: AppColors.mainColor,
-          ),
-         // home: PaymentPage(orderModel: OrderModel(id: 123,userId: 1),),
-          initialRoute: AppRoutes.SplashScreen,
-          getPages: AppRoutes.routes,
+          theme: ThemeData(primaryColor: AppColors.mainColor,),
+          home: SettingPage(),
+         // initialRoute: AppRoutes.SplashScreen,
+        //  getPages: AppRoutes.routes,
+
+          // language
+          locale: const Locale('gu', 'IN'),
+          translations: LocaleString(),
+          fallbackLocale: const Locale('en', 'US'),
         );
       });
     });
