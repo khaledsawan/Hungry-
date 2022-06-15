@@ -98,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 margin: const EdgeInsets.only(
                                     top: 15, left: 10, right: 10),
                                 padding: const EdgeInsets.all(8),
-                                child: Icon_Than_Text(
+                                child: IconThanText(
                                   icon: Icons.person,
                                   text: profilecontroller
                                       .userProfileModel!.fName
@@ -123,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 margin: const EdgeInsets.only(
                                     top: 15, left: 10, right: 10),
                                 padding: const EdgeInsets.all(8),
-                                child: Icon_Than_Text(
+                                child: IconThanText(
                                   icon: Icons.phone,
                                   text: profilecontroller
                                       .userProfileModel!.phone
@@ -148,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 margin: const EdgeInsets.only(
                                     top: 15, left: 10, right: 10),
                                 padding: const EdgeInsets.all(8),
-                                child: Icon_Than_Text(
+                                child: IconThanText(
                                   icon: Icons.email,
                                   text: profilecontroller
                                       .userProfileModel!.email
@@ -182,13 +182,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                       if (_isLogin &&
                                           addressController
                                               .addressTypeList.isEmpty) {
-                                        return Icon_Than_Text(
+                                        return IconThanText(
                                           icon: Icons.location_on_outlined,
                                           text: "Add your Address",
                                           color: AppColors.yellowColor,
                                         );
                                       } else {
-                                        return Icon_Than_Text(
+                                        return IconThanText(
                                           icon: Icons.location_on_outlined,
                                           text: "your Address",
                                           color: AppColors.yellowColor,
@@ -215,7 +215,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 margin: const EdgeInsets.only(
                                     top: 15, left: 10, right: 10),
                                 padding: const EdgeInsets.all(8),
-                                child: Icon_Than_Text(
+                                child: IconThanText(
                                   icon: Icons.perm_device_information_outlined,
                                   text: 'massage',
                                   color: Colors.red,
@@ -248,7 +248,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   margin: const EdgeInsets.only(
                                       top: 15, left: 10, right: 10),
                                   padding: const EdgeInsets.all(8),
-                                  child: Icon_Than_Text(
+                                  child: IconThanText(
                                     icon: Icons.logout,
                                     text: 'Logout ',
                                     color: Colors.red,

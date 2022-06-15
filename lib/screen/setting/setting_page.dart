@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_delivery_system/Controller/auth_controller.dart';
 import 'package:shop_delivery_system/Controller/user_profile_controller.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
+import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar.dart';
 
 import '../../routes/AppRoutes.dart';
 import '../../utils/theme/theme_service.dart';
@@ -20,10 +22,15 @@ class SettingPage extends StatelessWidget {
   }
 
   getinfo() async {
-    await Get.find<UserProfileController>().getProfileInfo().then((value) {
+    if(Get.find<AuthController>().isAuth()) {
+      await Get.find<UserProfileController>().getProfileInfo().then((value) {
       Get.toNamed(AppRoutes.EditProfile);
       return print(value.massage);
     });
+    }else{
+      ShowCustomSnackpar('you are not login', '');
+      Get.toNamed(AppRoutes.LoginPage);
+    }
   }
 
 //ChangeLanguageAlertDialog Start
@@ -58,7 +65,6 @@ class SettingPage extends StatelessWidget {
               },
               itemCount: locale.length)),
     );
-// show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -98,14 +104,14 @@ class SettingPage extends StatelessWidget {
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(left: 30, right: 30),
-                padding: EdgeInsets.only(bottom: 5),
+                padding: const EdgeInsets.only(bottom: 5),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon_Than_Text(
+                          IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.language_outlined,
                             text: 'language',
@@ -118,8 +124,8 @@ class SettingPage extends StatelessWidget {
                                 width: 35,
                                 height: 35,
                                 child: Icon(
-                                  Icons.arrow_right_outlined,
-                                  size: 35,
+                                  Icons.arrow_forward_ios_outlined,
+                                  size: 25,
                                 )),
                           )
                         ],
@@ -133,7 +139,7 @@ class SettingPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon_Than_Text(
+                          IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.person_outline,
                             text: 'edit profile',
@@ -143,12 +149,12 @@ class SettingPage extends StatelessWidget {
                               print('tapped');
                               getinfo();
                             },
-                            child: SizedBox(
+                            child: const SizedBox(
                                 width: 35,
                                 height: 35,
                                 child: Icon(
-                                  Icons.arrow_right_outlined,
-                                  size: 35,
+                                  Icons.arrow_forward_ios_outlined,
+                                  size: 25,
                                 )),
                           )
                         ],
@@ -162,7 +168,7 @@ class SettingPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon_Than_Text(
+                          IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.dark_mode_outlined,
                             text: 'them mode',
@@ -170,18 +176,18 @@ class SettingPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               ThemeService().switchTheme;
-
-                              // if (Get.isDarkMode)
-                              //   Get.changeThemeMode(ThemeMode.light);
-                              // else
-                              //   Get.changeThemeMode(ThemeMode.dark);
+                              if (Get.isDarkMode) {
+                                Get.changeThemeMode(ThemeMode.light);
+                              } else {
+                                Get.changeThemeMode(ThemeMode.dark);
+                              }
                             },
                             child: const SizedBox(
                                 width: 35,
                                 height: 35,
                                 child: Icon(
-                                  Icons.arrow_right_outlined,
-                                  size: 35,
+                                  Icons.arrow_forward_ios_outlined,
+                                  size: 25,
                                 )),
                           )
                         ],
@@ -195,7 +201,7 @@ class SettingPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon_Than_Text(
+                          IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.support_agent_outlined,
                             text: 'support',
@@ -209,8 +215,8 @@ class SettingPage extends StatelessWidget {
                                 width: 35,
                                 height: 35,
                                 child: Icon(
-                                  Icons.arrow_right_outlined,
-                                  size: 35,
+                                  Icons.arrow_forward_ios_outlined,
+                                  size: 25,
                                 )),
                           )
                         ],
@@ -224,7 +230,7 @@ class SettingPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon_Than_Text(
+                          IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.group_outlined,
                             text: 'about us',
@@ -234,12 +240,12 @@ class SettingPage extends StatelessWidget {
                               print('tapped');
                               Get.toNamed(AppRoutes.Aboutpage);
                             },
-                            child: SizedBox(
+                            child: const SizedBox(
                                 width: 35,
                                 height: 35,
                                 child: Icon(
-                                  Icons.arrow_right_outlined,
-                                  size: 35,
+                                  Icons.arrow_forward_ios_outlined,
+                                  size: 25,
                                 )),
                           )
                         ],
