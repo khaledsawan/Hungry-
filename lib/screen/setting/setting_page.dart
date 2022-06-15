@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_delivery_system/Controller/user_profile_controller.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
 
 import '../../routes/AppRoutes.dart';
@@ -132,6 +133,7 @@ class SettingPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               print('tapped');
+                              Get.find<UserProfileController>().getProfileInfo();
                               Get.toNamed(AppRoutes.EditProfile);
                             },
                             child: SizedBox(
