@@ -4,6 +4,7 @@ import 'package:shop_delivery_system/Controller/user_profile_controller.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
 
 import '../../routes/AppRoutes.dart';
+import '../../utils/theme/theme_service.dart';
 import '../../widgets/icon_than_text/icon_than_text.dart';
 
 class SettingPage extends StatelessWidget {
@@ -168,11 +169,12 @@ class SettingPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              print('tapped');
-                              if (Get.isDarkMode)
-                                Get.changeThemeMode(ThemeMode.light);
-                              else
-                                Get.changeThemeMode(ThemeMode.dark);
+                              ThemeService().switchTheme;
+
+                              // if (Get.isDarkMode)
+                              //   Get.changeThemeMode(ThemeMode.light);
+                              // else
+                              //   Get.changeThemeMode(ThemeMode.dark);
                             },
                             child: const SizedBox(
                                 width: 35,

@@ -11,7 +11,8 @@ import 'package:shop_delivery_system/screen/setting/setting_page.dart';
 import 'package:shop_delivery_system/services/model/order_model.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
 import 'package:shop_delivery_system/utils/localeString.dart';
-import 'package:shop_delivery_system/utils/themes.dart';
+import 'package:shop_delivery_system/utils/theme/theme_service.dart';
+import 'package:shop_delivery_system/utils/theme/themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
           title: 'food delivery System',
           debugShowCheckedModeBanner: false,
           theme: Themes.light,
-
-            darkTheme: Themes.dark,
+          darkTheme: Themes.dark,
+          themeMode: ThemeService().theme,
          // home: SettingPage(),
           initialRoute: AppRoutes.SplashScreen,
           getPages: AppRoutes.routes,
