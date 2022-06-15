@@ -107,7 +107,7 @@ class AppRoutes {
     ),
     GetPage(
         name: EditProfile,
-        page: () => const EditProfilePage(),
+        page: () =>  EditProfilePage(),
         transition: Transition.fadeIn),
     GetPage(
         name: Support,

@@ -16,6 +16,7 @@ class AppConstants {
   static const String REGISTERATION_URL = "/api/v1/auth/register";
   static const String LOGIN_URL = "/api/v1/auth/login";
   static const String USER_INFO = "/api/v1/customer/info?con";
+  static const String UPDATE_USER_PROFILE = "/api/v1/customer/update-profile";
 
   //for Address
   static const String GEOCODE_URI = '/api/v1/config/geocode-api';

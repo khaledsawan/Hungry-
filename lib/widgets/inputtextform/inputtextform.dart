@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class InPutTextForm extends StatelessWidget {
   IconData icon;
   Color color;
@@ -10,7 +9,7 @@ class InPutTextForm extends StatelessWidget {
   TextEditingController textEditingController;
   InPutTextForm(
       {Key? key,
-        this.isPassword=false,
+      this.isPassword = false,
       required this.icon,
       required this.hintcolor,
       required this.hintText,
