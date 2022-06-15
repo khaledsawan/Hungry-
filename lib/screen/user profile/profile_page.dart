@@ -70,17 +70,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Column(
                       children: [
                         SizedBox(
-                          child: Container(
-                            color: Colors.white,
-                          ),
-                          height: 20,
+                          height: height * 0.05,
                         ),
-                        AppIcons(
-                          icon: Icons.person,
-                          iconSize: 75,
-                          containerSize: 150,
-                          backgruondcolor: AppColors.mainColor,
-                          iconColor: Colors.white,
+                        Center(
+                          child: SizedBox(
+                              width: width - 17,
+                              height: height * 0.22,
+                              child: Image.asset('assets/image/userprofile.png')),
                         ),
                         Column(
                           children: [

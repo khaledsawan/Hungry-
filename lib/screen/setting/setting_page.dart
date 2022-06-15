@@ -18,6 +18,13 @@ class SettingPage extends StatelessWidget {
     Get.updateLocale(locale);
   }
 
+  getinfo() async {
+    await Get.find<UserProfileController>().getProfileInfo().then((value) {
+      Get.toNamed(AppRoutes.EditProfile);
+      return print(value.massage);
+    });
+  }
+
 //ChangeLanguageAlertDialog Start
   ChangeLanguageAlertDialog(BuildContext context) {
 // set up the button
@@ -104,7 +111,6 @@ class SettingPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-
                               ChangeLanguageAlertDialog(context);
                             },
                             child: const SizedBox(
@@ -117,10 +123,11 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                       Divider(color: AppColors.textColor,),
+                      Divider(
+                        color: AppColors.textColor,
+                      ),
                       SizedBox(
                         height: height * 0.01,
-
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,8 +140,7 @@ class SettingPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               print('tapped');
-                              Get.find<UserProfileController>().getProfileInfo();
-                              Get.toNamed(AppRoutes.EditProfile);
+                              getinfo();
                             },
                             child: SizedBox(
                                 width: 35,
@@ -146,7 +152,9 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                       Divider(color: AppColors.textColor,),
+                      Divider(
+                        color: AppColors.textColor,
+                      ),
                       SizedBox(
                         height: height * 0.01,
                       ),
@@ -161,9 +169,12 @@ class SettingPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               print('tapped');
-                             // Get.theme.c;
+                              if (Get.isDarkMode)
+                                Get.changeThemeMode(ThemeMode.light);
+                              else
+                                Get.changeThemeMode(ThemeMode.dark);
                             },
-                            child: SizedBox(
+                            child: const SizedBox(
                                 width: 35,
                                 height: 35,
                                 child: Icon(
@@ -173,7 +184,9 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                       Divider(color: AppColors.textColor,),
+                      Divider(
+                        color: AppColors.textColor,
+                      ),
                       SizedBox(
                         height: height * 0.01,
                       ),
@@ -188,8 +201,8 @@ class SettingPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               print('tapped');
-                             Get.toNamed(AppRoutes.Support);
-                           },
+                              Get.toNamed(AppRoutes.Support);
+                            },
                             child: const SizedBox(
                                 width: 35,
                                 height: 35,
@@ -200,7 +213,9 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                       Divider(color: AppColors.textColor,),
+                      Divider(
+                        color: AppColors.textColor,
+                      ),
                       SizedBox(
                         height: height * 0.01,
                       ),
@@ -215,7 +230,7 @@ class SettingPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               print('tapped');
-                             Get.toNamed(AppRoutes.Aboutpage);
+                              Get.toNamed(AppRoutes.Aboutpage);
                             },
                             child: SizedBox(
                                 width: 35,
@@ -227,7 +242,9 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                       Divider(color: AppColors.textColor,),
+                      Divider(
+                        color: AppColors.textColor,
+                      ),
                       SizedBox(
                         height: height * 0.01,
                       ),

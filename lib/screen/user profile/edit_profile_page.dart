@@ -26,9 +26,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   void initState() {
-    print('update');
-    _isAuth = Get.find<AuthController>().isAuth();
     super.initState();
+    print('init ');
+    nameController.text =
+        Get.find<UserProfileController>().userProfileModel!.fName.toString();
+    emailController.text =
+        Get.find<UserProfileController>().userProfileModel!.email.toString();
+    phoneController.text =
+        Get.find<UserProfileController>().userProfileModel!.phone.toString();
   }
 
   @override
@@ -39,33 +44,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
     UserProfileController userProfileController = Get.find();
     if (userProfileController.userProfileModel.isNull) {
       userProfileController.getProfileInfo().then((status) {
-        if (status.isSuccessful!) {
-          // Get.offAllNamed(AppRoutes.InitHome);
-        } else {}
+        if (status.isSuccessful!) {}
       });
     }
 
-    //print(userid+'///////////////////');
+    update(UserProfileController userProfileController) {
+      if (nameController.text.trim().isEmpty) {
+        ShowCustomSnackpar('at lest set 1 charters', 'short name');
+      } else if (!GetUtils.isEmail(emailController.text.trim())) {
+        ShowCustomSnackpar('Examble@examble.com', 'not email');
+      } else if (!GetUtils.isNum(phoneController.text.trim())) {
+        ShowCustomSnackpar('only number', 'not number');
+      } else {
+        print(phoneController.text.trim());
+        print(emailController.text.trim());
+        print(nameController.text.trim());
 
-    update() {
-      // if (nameController.text.trim().isNotEmpty) {
-      //   if (!GetUtils.isEmail(emailController.text.trim())) {
-      //     if (!GetUtils.isNum(phoneController.text.trim())) {
-            Get.find<UserProfileController>().updateUserProfile(
-                UpdateProfileModel(
-                    id: int.parse(userId),
-                    email: emailController.text.trim(),
-                    phone: int.parse(phoneController.text.trim()),
-                    f_name: nameController.text.trim())).then((value) => ShowCustomSnackpar(value.massage.toString(),''));
-      //     } else {
-      //       ShowCustomSnackpar('only number', 'not number');
-      //     }
-      //   } else {
-      //     ShowCustomSnackpar('Examble@examble.com', 'not email');
-      //   }
-      // } else {
-      //   ShowCustomSnackpar('at lest set 1 charters', 'short name');
-      // }
+        userProfileController.updateUserProfile(UpdateProfileModel(
+            phone: int.parse(phoneController.text.trim()),
+            id: int.parse(
+                userProfileController.userProfileModel!.id.toString()),
+            email: emailController.text.trim(),
+            f_name: nameController.text.trim()));
+      }
     }
 
     return Scaffold(
@@ -86,13 +87,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         SizedBox(
                           height: height * 0.05,
                         ),
-                        Center(
-                          child: Container(
+                        Stack(children: [
+                          Container(
                               width: width - 17,
                               height: height * 0.22,
                               child:
-                                  Image.asset('assets/image/editprofile.png')),
-                        ),
+                                  Image.asset('assets/image/userprofile.png')),
+                          Positioned(
+                            left: 170,
+                            right: 40,
+                            height: 60,
+                            top: 30,
+                            child: Container(
+                                width: width - 10,
+                                height: height * 0.1,
+                                child: Image.asset('assets/image/settings.png')),
+                          ),
+                        ]),
                         SizedBox(
                           height: height * 0.05,
                         ),
@@ -102,8 +113,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             InPutTextForm(
                               textEditingController: nameController,
                               color: AppColors.mainColor,
-                              hintText: userController.userProfileModel!.fName
-                                  .toString(),
+                              hintText: 'name',
                               icon: Icons.person_outline,
                               hintcolor: Colors.grey,
                             ),
@@ -118,8 +128,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             InPutTextForm(
                               textEditingController: emailController,
                               color: AppColors.mainColor,
-                              hintText: userController.userProfileModel!.email
-                                  .toString(),
+                              hintText: 'yourEmail@example.com',
                               icon: Icons.email_outlined,
                               hintcolor: Colors.grey,
                             ),
@@ -134,8 +143,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             InPutTextForm(
                               textEditingController: phoneController,
                               color: AppColors.mainColor,
-                              hintText: userController.userProfileModel!.phone
-                                  .toString(),
+                              hintText: 'phone',
                               icon: Icons.phone_iphone_outlined,
                               hintcolor: Colors.grey,
                             ),
@@ -146,7 +154,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            update();
+                            update(userController);
                           },
                           child: Container(
                             width: width * 0.5,
