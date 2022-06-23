@@ -50,15 +50,23 @@ class PopularProductController extends GetxController {
 
   void setQuantity(bool isincrement) {
     if (isincrement) {
-      _quantity = checkQuantity(_quantity + 1);
+      if ((_inCartItems + _quantity == 20)) {
+        _quantity = 20;
+      } else {
+        _quantity = checkQuantity(_quantity + 1);
+      }
     } else {
-      _quantity = checkQuantity(_quantity - 1);
+      if ((_inCartItems + _quantity == 0)) {
+        _quantity = 0;
+      } else {
+        _quantity = checkQuantity(_quantity - 1);
+      }
     }
     update();
   }
 
-  void addItem(ProductModal productModal,String category) {
-    _cartController.additem(productModal, _quantity,category);
+  void addItem(ProductModal productModal, String category) {
+    _cartController.additem(productModal, _quantity, category);
     _quantity = 0;
     _inCartItems = _cartController.cartitemsquantity(productModal);
     print(_cartController.cartItems);

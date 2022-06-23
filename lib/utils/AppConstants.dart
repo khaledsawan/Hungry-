@@ -14,7 +14,7 @@ class AppConstants {
 
   //for Auth
   static const String REGISTERATION_URL = "/api/v1/auth/register";
-  static const String LOGIN_URL = "/api/v1/auth/login";
+  static const String LOGIN_URL = "/api/v1/auth/login";// /api/v1/auth/login
   static const String USER_INFO = "/api/v1/customer/info?con";
   static const String UPDATE_USER_PROFILE = "/api/v1/customer/update-profile";
 
