@@ -1,11 +1,9 @@
-import 'dart:ui';
-
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_delivery_system/Services/api/api_client.dart';
 import 'package:shop_delivery_system/services/model/address_model.dart';
-
 import '../../utils/AppConstants.dart';
 
 class AddressRepo extends GetxService {
@@ -13,9 +11,12 @@ class AddressRepo extends GetxService {
   late SharedPreferences sharedPre;
   AddressRepo({required this.apiClient, required this.sharedPre});
 
-  Future<Response> getAddressfromGeocode(LatLng latLng) async {
-    return await apiClient.getData('${AppConstants.GEOCODE_URI}'
-        '?lat=${latLng.latitude}&lng=${latLng.longitude}');
+  Future<List<Placemark>> getAddressfromGeocode(LatLng latLng) async {
+    // return await apiClient.getData('${AppConstants.GEOCODE_URI}'
+    //     '?lat=${latLng.latitude}&lng=${latLng.longitude}');
+
+
+    return  await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
   }
 
   String getUserAddress() {
@@ -23,8 +24,12 @@ class AddressRepo extends GetxService {
   }
 
   Future<Response> addAddress(AddressModel addressModel) async {
+    print(addressModel.address);
+    print(addressModel.contactPersonNumber);
+    print(addressModel.contactPersonName);
+    print('///////////////////////////////');
     return await apiClient.postData(
-        AppConstants.ADD_USER_ADDRESS, addressModel);
+        AppConstants.ADD_USER_ADDRESS, addressModel.toJson());
   }
 
   Future<Response> getAllAddress() async {
