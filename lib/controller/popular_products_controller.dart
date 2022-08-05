@@ -25,16 +25,19 @@ class PopularProductController extends GetxController {
   int get inCartItems => _inCartItems + _quantity;
 
   Future<void> getPopularProductList() async {
+    _isLoaded = true;
     Response response = await popularProductRepo.GetProductList();
     if (response.statusCode == 200) {
       _productList = [];
       _productList.addAll(Product.fromJson(response.body).products);
       print(_productList);
-      _isLoaded = true;
+      _isLoaded = false;
       update();
     } else {
       print("No products");
+      _isLoaded = false;
     }
+    _isLoaded = false;
   }
 
   void initproduct(ProductModal productModal, CartController cart) {
