@@ -68,11 +68,27 @@ class AddressController extends GetxController implements GetxService {
   }
 
   Future<String> getAddressfromGeocode(LatLng latLng) async {
+    // String _address = "Unknown location found";
+    // Response response = await addressRepo.getAddressfromGeocode(latLng);
+    // if (response.body["status"] == 'OK') {
+    //   _address = response.body["results"][0]['formatted_address'].toString();
+    // } else {}
+    // update();
+    // return _address;
     String _address = "Unknown location found";
-    Response response = await addressRepo.getAddressfromGeocode(latLng);
-    if (response.body["status"] == 'OK') {
-      _address = response.body["results"][0]['formatted_address'].toString();
-    } else {}
+    List<Placemark> response = await addressRepo.getAddressfromGeocode(latLng);
+    if (true) {
+      Placemark placeMark = response[0];
+      String? name = placeMark.name;
+      String? subLocality = placeMark.subLocality;
+      String? locality = placeMark.locality;
+      String? administrativeArea = placeMark.administrativeArea;
+      String? postalCode = placeMark.postalCode;
+      String? country = placeMark.country;
+      String? street = placeMark.street;
+      _address = "$name,$street,$postalCode, $subLocality, $locality, $administrativeArea , $country";
+
+    }
     update();
     return _address;
   }
@@ -120,8 +136,8 @@ class AddressController extends GetxController implements GetxService {
           fromAddress
               ? _placemark = Placemark(name: _address)
               : _pickplacemark = Placemark(name: _address);
-        }else{
-          _changeAddress=true;
+        } else {
+          _changeAddress = true;
         }
       } catch (e) {
         print(e.toString());
@@ -157,10 +173,11 @@ class AddressController extends GetxController implements GetxService {
 
     Response response = await addressRepo.addAddress(addressModel);
     ResponseModel responseModel;
+    print(response.statusCode);
     if (response.statusCode == 200) {
+      print('///// status is 200/ addAddress ///////////');
       await getAddressList();
-      String message = response.body["message"];
-      responseModel = ResponseModel(massage: message, isSuccessful: true);
+      responseModel = ResponseModel(massage: response.body["message"], isSuccessful: true);
       await saveUserAddress(addressModel);
     } else {
       print("couldn't save the address");
@@ -174,17 +191,20 @@ class AddressController extends GetxController implements GetxService {
   Future<void> getAddressList() async {
     Response response = await addressRepo.getAllAddress();
     if (response.statusCode == 200) {
+      print('///// status is 200/ getAddressList ///////////');
+
       _addressList = [];
       _alladdressList = [];
       response.body.forEach((address) {
         _addressList.add(AddressModel.fromjson(address));
         _alladdressList.add(AddressModel.fromjson(address));
       });
+      print(_addressList);
+      print(_alladdressList);
     } else {
       _addressList = [];
       _alladdressList = [];
     }
-    //locationRepo.getAllAddress();
   }
 
   Future<bool> saveUserAddress(AddressModel addressModel) async {

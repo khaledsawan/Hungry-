@@ -213,9 +213,12 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: height * 0.05,
+                        ),
                         Container(
-                            height: height * 0.4,
-                            width: width * 0.6,
+                            width: width - 17,
+                            height: height * 0.22,
                             child: Image.asset("assets/image/empty_cart.png")),
                         BigText(
                           textbody: 'you are not order anything yet',

@@ -286,6 +286,7 @@ class _AddressPageState extends State<AddressPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
+
                       AddressModel _addressModel = AddressModel(
                         addressType: addressController.addressTypeList[
                             addressController.addressTypeIndex],
@@ -297,6 +298,12 @@ class _AddressPageState extends State<AddressPage> {
                         longitude:
                             addressController.position.longitude.toString(),
                       );
+                      print(_addressModel.longitude+'////////////////////////////////////////////////////');
+                      print(_addressModel.latitude+'////////////////////////////////////////////////////');
+                      print(_addressModel.address+'////////////////////////////////////////////////////');
+                      print(_addressModel.contactPersonName!+'////////////////////////////////////////////////////');
+                      print(_addressModel.contactPersonNumber!+'////////////////////////////////////////////////////');
+                      print(_addressModel.addressType.toString()+'////////////////////////////////////////////////////');
                       addressController.addAddress(_addressModel).then(
                             (response) => {
                               if (response.isSuccessful!)

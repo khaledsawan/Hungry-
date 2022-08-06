@@ -32,19 +32,14 @@ class _MainSilederPageState extends State<MainSilederPage> {
       });
     });
   }
-
   @override
   void dispose() {
     super.dispose();
     _pagecontroller.dispose();
   }
-
-
   late double height;
   late double width;
   late double _height;
-
-
 
   @override
   Widget build(BuildContext context) {

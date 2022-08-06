@@ -39,8 +39,8 @@ String get longitude=>_longitude;
   Map toJson() => {
     'addressType': _addressType,
     'id': _id,
-    'contactPersonName': _contactPersonName,
-    'contactPersonNumber': _contactPersonNumber,
+    'contact_person_name': _contactPersonName,
+    'contact_person_number': _contactPersonNumber,
     'latitude': _latitude,
     'longitude': _longitude,
     'address': _address
@@ -50,8 +50,8 @@ String get longitude=>_longitude;
     Map<String,dynamic> json={};
     json["id"]=_id;
     json["addressType"]=_addressType;
-    json["contactPersonName"]=_contactPersonName;
-    json["contactPersonNumber"]=_contactPersonNumber;
+    json["contact_person_name"]=_contactPersonName;
+    json["contact_person_number"]=_contactPersonNumber;
     json["address"]=_address;
     json["latitude"]=_latitude;
     json["longitude"]=_longitude;

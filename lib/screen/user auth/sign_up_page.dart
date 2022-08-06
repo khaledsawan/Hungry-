@@ -9,6 +9,7 @@ import 'package:shop_delivery_system/widgets/text/smail_text.dart';
 import 'package:get/get.dart';
 
 import '../../Controller/auth_controller.dart';
+import '../../Controller/user_profile_controller.dart';
 import 'sign_in_page.dart';
 
 class SignUpPage extends GetView<AuthController> {
@@ -22,7 +23,7 @@ class SignUpPage extends GetView<AuthController> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  void _registeration(AuthController authController) {
+  void _registeration(AuthController authController) async{
     String name = nameController.text.trim();
     String email = emailController.text.trim();
     String phone = phoneController.text.trim();
@@ -47,6 +48,7 @@ class SignUpPage extends GetView<AuthController> {
       authController.registeration(signUpModel).then((status) {
         if (status.isSuccessful!) {
           print('registration is done');
+
           Get.offNamed(AppRoutes.InitHome);
         } else {
           ShowCustomSnackpar(

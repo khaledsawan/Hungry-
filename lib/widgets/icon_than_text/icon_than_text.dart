@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:shop_delivery_system/widgets/App_Icons/app_icons.dart';
 import 'package:shop_delivery_system/widgets/text/big_text.dart';
 
-class Icon_Than_Text extends StatelessWidget {
+class IconThanText extends StatelessWidget {
   IconData icon;
   Color color;
+  Color textColor;
   String  text;
-   Icon_Than_Text({Key? key,required this.icon,required this.text,required this.color}) : super(key: key);
+   IconThanText({Key? key,required this.icon,required this.text,required this.color,this.textColor=Colors.black54}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-     child: Row(
-        children: [
-           AppIcons(icon: icon,containerSize: 40,iconSize: 24,backgruondcolor: color,iconColor: Colors.white,),
-           SizedBox(width: 15,),
-           BigText(textbody: text,color: Colors.black54,),
-        ],
-      )
-    );
+    return Row(
+       children: [
+          AppIcons(icon: icon,containerSize: 40,iconSize: 24,backgruondcolor: color,iconColor: Colors.white,),
+          const SizedBox(width: 15,),
+          BigText(textbody: text,color: textColor,),
+       ],
+     );
   }
 }
