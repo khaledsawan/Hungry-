@@ -172,7 +172,7 @@ class _AddressPageState extends State<AddressPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 20, top: 20),
+                    padding: const EdgeInsets.only(left: 20, top: 20),
                     child: SizedBox(
                       height: 50,
                       child: ListView.builder(
