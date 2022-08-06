@@ -2,9 +2,10 @@ import 'package:get/get.dart';
 import 'package:shop_delivery_system/Services/model/user_profile_model.dart';
 import 'package:shop_delivery_system/Services/repository/user_profile_repo.dart';
 import 'package:shop_delivery_system/services/model/update_profile_model.dart';
-import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar.dart';
+import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar_red.dart';
 
 import '../Services/model/response_model.dart';
+import '../widgets/Custom_snackpar/show_custom_snakpar_green.dart';
 
 class UserProfileController extends GetxController implements GetxService {
   late UserProfileRepo userProfileReop;
@@ -40,12 +41,12 @@ class UserProfileController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       _isLoaded = false;
       responseModel = ResponseModel(massage: 'Successful', isSuccessful: true);
-      ShowCustomSnackpar('profile update successful', '');
+      ShowCustomSnackparGreen('profile update successful', '');
     } else {
       _isLoaded = false;
       _userProfileModel;
       responseModel = ResponseModel(massage: 'failed', isSuccessful: false);
-      ShowCustomSnackpar('try ageing', '');
+      ShowCustomSnackparRed('try ageing', '');
     }
     _isLoaded = false;
     update();

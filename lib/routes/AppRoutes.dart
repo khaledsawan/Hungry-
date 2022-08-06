@@ -5,6 +5,7 @@ import 'package:shop_delivery_system/screen/home/home_page.dart';
 import 'package:shop_delivery_system/screen/location/address_page.dart';
 import 'package:shop_delivery_system/screen/payment/payment_page.dart';
 import 'package:shop_delivery_system/screen/splach_screen/splash_screen.dart';
+import 'package:shop_delivery_system/screen/splach_screen/splash_screen_v2.dart';
 import 'package:shop_delivery_system/screen/user%20auth/sign_in_page.dart';
 import 'package:shop_delivery_system/screen/user%20auth/sign_up_page.dart';
 import 'package:shop_delivery_system/screen/user%20profile/edit_profile_page.dart';
@@ -22,6 +23,7 @@ class AppRoutes {
   static const String PopularPage = "/popular-page";
   static const String CartScreen = "/cart-page";
   static const String SplashScreen = "/splash-screen";
+  static const String SS = "/splash-screen-v2";
   static const String LoginPage = "/login-page";
   static const String Registerpage = "/register-page";
   static const String Addresspage = "/address-page";
@@ -38,7 +40,7 @@ class AppRoutes {
     GetPage(
         name: InitHome,
         page: () => const HomePage(),
-        transition: Transition.fadeIn),
+        transition: Transition.fade),
     GetPage(
         name: AddressPike,
         page: () => const PickAddressMap(
@@ -54,6 +56,10 @@ class AppRoutes {
     GetPage(
         name: SplashScreen,
         page: () => SplachScreen(),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: SS,
+        page: () => SplashScreenV2(),
         transition: Transition.fadeIn),
     GetPage(
         name: LoginPage,
@@ -107,15 +113,15 @@ class AppRoutes {
     ),
     GetPage(
         name: EditProfile,
-        page: () =>  EditProfilePage(),
+        page: () => EditProfilePage(),
         transition: Transition.fadeIn),
     GetPage(
         name: Support,
-        page: () =>  const SupportPage(),
+        page: () => const SupportPage(),
         transition: Transition.fadeIn),
     GetPage(
         name: Aboutpage,
-        page: () =>  const AboutUsPage(),
+        page: () => const AboutUsPage(),
         transition: Transition.fadeIn),
   ];
 }

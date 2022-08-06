@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
-import '../../Controller/auth_controller.dart';
 import '../../Controller/user_profile_controller.dart';
 import '../../services/model/update_profile_model.dart';
-import '../../widgets/Custom_snackpar/show_custom_snackpar.dart';
+import '../../widgets/Custom_snackpar/show_custom_snackpar_red.dart';
 import '../../widgets/inputtextform/inputtextform.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -50,11 +49,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     update(UserProfileController userProfileController) {
       if (nameController.text.trim().isEmpty) {
-        ShowCustomSnackpar('at lest set 1 charters', 'short name');
+        ShowCustomSnackparRed('at lest set 1 charters', 'short name');
       } else if (!GetUtils.isEmail(emailController.text.trim())) {
-        ShowCustomSnackpar('Examble@examble.com', 'not email');
+        ShowCustomSnackparRed('Examble@examble.com', 'not email');
       } else if (!GetUtils.isNum(phoneController.text.trim())) {
-        ShowCustomSnackpar('only number', 'not number');
+        ShowCustomSnackparRed('only number', 'not number');
       } else {
         print(phoneController.text.trim());
         print(emailController.text.trim());
@@ -62,8 +61,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
         userProfileController.updateUserProfile(UpdateProfileModel(
             phone: int.parse(phoneController.text.trim()),
-            id: int.parse(
-                userProfileController.userProfileModel!.id.toString()),
+
             email: emailController.text.trim(),
             f_name: nameController.text.trim()));
       }

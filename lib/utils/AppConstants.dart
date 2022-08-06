@@ -6,7 +6,7 @@ class AppConstants {
                    /*  for api   */
 
   //for base Uri
-  static const String BASE_URL = "http://mvs.bslmeiyu.com";//http://mvs.bslmeiyu.com
+  static const String BASE_URL = "http://192.168.1.10:8000";//http://mvs.bslmeiyu.com
 
   //for product
   static const String POPULAR_PRODUCT_URL = "/api/v1/products/popular";
@@ -16,6 +16,7 @@ class AppConstants {
   static const String REGISTERATION_URL = "/api/v1/auth/register";
   static const String LOGIN_URL = "/api/v1/auth/login";
   static const String USER_INFO = "/api/v1/customer/info?con";
+  static const String UPDATE_USER_PROFILE = "/api/v1/customer/update-profile";
 
   //for Address
   static const String GEOCODE_URI = '/api/v1/config/geocode-api';

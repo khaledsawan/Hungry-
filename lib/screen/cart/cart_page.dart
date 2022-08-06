@@ -10,7 +10,7 @@ import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/screen/cart/cart_history_page.dart';
 import 'package:shop_delivery_system/services/model/place_order_model.dart';
 import 'package:shop_delivery_system/widgets/App_Icons/app_icons.dart';
-import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar.dart';
+import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar_red.dart';
 import 'package:shop_delivery_system/widgets/text/big_text.dart';
 import 'package:shop_delivery_system/widgets/text/smail_text.dart';
 import '../../utils/AppConstants.dart';
@@ -63,7 +63,7 @@ class _CartPageState extends State<CartPage> {
                           if (Get.find<AddressController>()
                               .addressList
                               .isEmpty) {
-                            ShowCustomSnackpar('add your address pleas', 'ops');
+                            ShowCustomSnackparRed('add your address pleas', 'ops');
                             Get.toNamed(AppRoutes.AddAddress);
                           } else {
                             var user = Get.find<UserProfileController>()
@@ -86,7 +86,7 @@ class _CartPageState extends State<CartPage> {
                                 .placeorder(_callback, placeOrderModle);
                           }
                         } else {
-                          ShowCustomSnackpar('you need to SignIn', 'ops');
+                          ShowCustomSnackparRed('you need to SignIn', 'ops');
                           Get.toNamed(AppRoutes.LoginPage);
                         }
                       },
@@ -341,6 +341,6 @@ void _callback(bool isOrder, String massage, String orderId) {
       {"user_Id": Get.find<UserProfileController>().userProfileModel?.id!}
     ]);
   } else {
-    ShowCustomSnackpar(massage, '');
+    ShowCustomSnackparRed(massage, '');
   }
 }

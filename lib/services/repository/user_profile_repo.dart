@@ -4,7 +4,6 @@ import 'package:shop_delivery_system/services/model/update_profile_model.dart';
 import 'package:shop_delivery_system/utils/AppConstants.dart';
 
 import '../api/api_client.dart';
-import '../model/user_signup_model.dart';
 
 class UserProfileRepo extends GetxService {
   late ApiClient apiClient;

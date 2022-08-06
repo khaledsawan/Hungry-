@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:shop_delivery_system/Controller/auth_controller.dart';
 import 'package:shop_delivery_system/Controller/user_profile_controller.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
-import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar.dart';
+import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar_red.dart';
 
 import '../../routes/AppRoutes.dart';
 import '../../utils/theme/theme_service.dart';
@@ -28,7 +28,7 @@ class SettingPage extends StatelessWidget {
       return print(value.massage);
     });
     }else{
-      ShowCustomSnackpar('you are not login', '');
+      ShowCustomSnackparRed('you are not login', '');
       Get.toNamed(AppRoutes.LoginPage);
     }
   }
@@ -114,7 +114,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.language_outlined,
-                            text: 'language',
+                            text: 'Language',
                           ),
                           GestureDetector(
                             onTap: () {
@@ -134,7 +134,7 @@ class SettingPage extends StatelessWidget {
                         color: AppColors.textColor,
                       ),
                       SizedBox(
-                        height: height * 0.01,
+                        height: height * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,7 +142,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.person_outline,
-                            text: 'edit profile',
+                            text: 'Edit profile',
                           ),
                           GestureDetector(
                             onTap: () {
@@ -163,7 +163,7 @@ class SettingPage extends StatelessWidget {
                         color: AppColors.textColor,
                       ),
                       SizedBox(
-                        height: height * 0.01,
+                        height: height * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +171,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.dark_mode_outlined,
-                            text: 'them mode',
+                            text: 'Them mode',
                           ),
                           GestureDetector(
                             onTap: () {
@@ -196,7 +196,7 @@ class SettingPage extends StatelessWidget {
                         color: AppColors.textColor,
                       ),
                       SizedBox(
-                        height: height * 0.01,
+                        height: height * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -204,7 +204,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.support_agent_outlined,
-                            text: 'support',
+                            text: 'Support',
                           ),
                           GestureDetector(
                             onTap: () {
@@ -225,7 +225,7 @@ class SettingPage extends StatelessWidget {
                         color: AppColors.textColor,
                       ),
                       SizedBox(
-                        height: height * 0.01,
+                        height: height * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -233,7 +233,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.group_outlined,
-                            text: 'about us',
+                            text: 'About us',
                           ),
                           GestureDetector(
                             onTap: () {
@@ -254,7 +254,7 @@ class SettingPage extends StatelessWidget {
                         color: AppColors.textColor,
                       ),
                       SizedBox(
-                        height: height * 0.01,
+                        height: height * 0.02,
                       ),
                     ],
                   ),

@@ -6,7 +6,7 @@ import 'package:shop_delivery_system/screen/user%20auth/sign_up_page.dart';
 import '../../Controller/auth_controller.dart';
 import '../../Services/model/user_signin_model.dart';
 import '../../utils/colors.dart';
-import '../../widgets/Custom_snackpar/show_custom_snackpar.dart';
+import '../../widgets/Custom_snackpar/show_custom_snackpar_red.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -23,13 +23,13 @@ class _SignInPageState extends State<SignInPage> {
     String phone = phoneController.text.trim();
     String password = passwordController.text.trim();
     if (phone.isEmpty) {
-      ShowCustomSnackpar('enter phone number ', 'empty field');
+      ShowCustomSnackparRed('enter phone number ', 'empty field');
     } else if (!phone.isNum) {
-      ShowCustomSnackpar('you need to enter numbers only', 'not phone number');
+      ShowCustomSnackparRed('you need to enter numbers only', 'not phone number');
     } else if (password.isEmpty) {
-      ShowCustomSnackpar('enter your password ', 'empty field');
+      ShowCustomSnackparRed('enter your password ', 'empty field');
     } else if (password.length < 6) {
-      ShowCustomSnackpar(
+      ShowCustomSnackparRed(
           'short password must more than 6 characters', 'short password');
     } else {
       UserSingInModel userLoginModel = new UserSingInModel(phone, password);
@@ -38,7 +38,7 @@ class _SignInPageState extends State<SignInPage> {
           print('registeration is done');
           Get.offAllNamed(AppRoutes.InitHome);
         } else {
-          ShowCustomSnackpar(
+          ShowCustomSnackparRed(
               status.massage.toString() +
                   ' password or phone number not correct',
               'error');

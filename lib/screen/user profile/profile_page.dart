@@ -10,7 +10,6 @@ import '../../routes/AppRoutes.dart';
 import '../../utils/colors.dart';
 import '../../widgets/App_Icons/app_icons.dart';
 import '../../widgets/icon_than_text/icon_than_text.dart';
-import '../../widgets/text/big_text.dart';
 import '../location/address_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -102,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 margin: const EdgeInsets.only(
                                     top: 15, left: 10, right: 10),
                                 padding: const EdgeInsets.all(8),
-                                child: Icon_Than_Text(
+                                child: IconThanText(
                                   icon: Icons.person,
                                   text: profilecontroller
                                       .userProfileModel!.fName
@@ -127,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 margin: const EdgeInsets.only(
                                     top: 15, left: 10, right: 10),
                                 padding: const EdgeInsets.all(8),
-                                child: Icon_Than_Text(
+                                child: IconThanText(
                                   icon: Icons.phone,
                                   text: profilecontroller
                                       .userProfileModel!.phone
@@ -152,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 margin: const EdgeInsets.only(
                                     top: 15, left: 10, right: 10),
                                 padding: const EdgeInsets.all(8),
-                                child: Icon_Than_Text(
+                                child: IconThanText(
                                   icon: Icons.email,
                                   text: profilecontroller
                                       .userProfileModel!.email
@@ -186,13 +185,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                       if (_isLogin &&
                                           addressController
                                               .addressTypeList.isEmpty) {
-                                        return Icon_Than_Text(
+                                        return IconThanText(
                                           icon: Icons.location_on_outlined,
                                           text: "Add your Address",
                                           color: AppColors.yellowColor,
                                         );
                                       } else {
-                                        return Icon_Than_Text(
+                                        return IconThanText(
                                           icon: Icons.location_on_outlined,
                                           text: "your Address",
                                           color: AppColors.yellowColor,
@@ -219,7 +218,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 margin: const EdgeInsets.only(
                                     top: 15, left: 10, right: 10),
                                 padding: const EdgeInsets.all(8),
-                                child: Icon_Than_Text(
+                                child: IconThanText(
                                   icon: Icons.perm_device_information_outlined,
                                   text: 'massage',
                                   color: Colors.red,
@@ -253,7 +252,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   margin: const EdgeInsets.only(
                                       top: 15, left: 10, right: 10),
                                   padding: const EdgeInsets.all(8),
-                                  child: Icon_Than_Text(
+                                  child: IconThanText(
                                     icon: Icons.logout,
                                     text: 'Logout ',
                                     color: Colors.red,
@@ -279,10 +278,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Center(
                       child: Container(
-                        width: width-20,
-                          height: height*0.25,
+                          width: width - 20,
+                          height: height * 0.25,
                           child: Image.asset('assets/image/notlogin.png')),
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: height * 0.02,
                     ),
                     Container(
@@ -325,7 +325,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onTap: () {
                                   Get.toNamed(AppRoutes.LoginPage);
                                 },
-                                child:  Icon(
+                                child: Icon(
                                   Icons.login_outlined,
                                   color: AppColors.yellowColor,
                                   size: 30,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_delivery_system/Services/model/user_signup_model.dart';
 import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
-import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar.dart';
+import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar_red.dart';
 import 'package:shop_delivery_system/widgets/inputtextform/inputtextform.dart';
 import 'package:shop_delivery_system/widgets/text/big_text.dart';
 import 'package:shop_delivery_system/widgets/text/smail_text.dart';
@@ -29,17 +29,17 @@ class SignUpPage extends GetView<AuthController> {
     String phone = phoneController.text.trim();
     String password = passwordController.text.trim();
     if (name.isEmpty) {
-      ShowCustomSnackpar('enter name', 'name is empty');
+      ShowCustomSnackparRed('enter name', 'name is empty');
     } else if (email.isEmpty) {
-      ShowCustomSnackpar('enter email', 'email is empty');
+      ShowCustomSnackparRed('enter email', 'email is empty');
     } else if (!GetUtils.isEmail(email)) {
-      ShowCustomSnackpar('not email', 'not email');
+      ShowCustomSnackparRed('not email', 'not email');
     } else if (!GetUtils.isNum(phone)) {
-      ShowCustomSnackpar('you need to enter number', 'not number');
+      ShowCustomSnackparRed('you need to enter number', 'not number');
     } else if (password.isEmpty) {
-      ShowCustomSnackpar('enter password', 'password is emoty');
+      ShowCustomSnackparRed('enter password', 'password is emoty');
     } else if (password.length < 6) {
-      ShowCustomSnackpar(
+      ShowCustomSnackparRed(
           'short password must more than 6 characters', 'short password');
     } else {
       UserSignUpModel signUpModel =
@@ -51,7 +51,7 @@ class SignUpPage extends GetView<AuthController> {
 
           Get.offNamed(AppRoutes.InitHome);
         } else {
-          ShowCustomSnackpar(
+          ShowCustomSnackparRed(
               status.massage.toString() +
                   ' password or phone number not correct',
               'error');

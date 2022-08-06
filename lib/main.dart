@@ -28,9 +28,10 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: AppColors.mainColor,
+            fontFamily: "lato"
           ),
          // home: PaymentPage(orderModel: OrderModel(id: 123,userId: 1),),
-          initialRoute: AppRoutes.SplashScreen,
+          initialRoute: AppRoutes.SS,
           getPages: AppRoutes.routes,
         );
       });

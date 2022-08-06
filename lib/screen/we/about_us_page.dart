@@ -41,11 +41,10 @@ class AboutUsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
-          title: const Center(
-              child: Text(
-            'Who we are',
+          title:  Text(
+            '          Who we are',
             style: TextStyle(fontSize: 24),
-          )),
+          )
         ),
         body: Container(
           margin: const EdgeInsets.only(left: 30, right: 30),
