@@ -42,40 +42,53 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
     int ListCounter = 0;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.mainColor,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: const [
+            Text(
+              'Your Cart History',
+              style: TextStyle(fontSize: 24),
+            ),
+            Icon(Icons.shopping_cart_outlined,size: 35,),
+          ],
+        ),
+      ),
       body: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(color: AppColors.mainColor, boxShadow: [
-              BoxShadow(
-                color: Colors.grey[400]!,
-                offset: const Offset(
-                  1,
-                  1.2,
-                ),
-                blurRadius: 1.0,
-                spreadRadius: 1.0,
-              ),
-            ]),
-            alignment: Alignment.bottomCenter,
-            width: width,
-            height: height * 0.10,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                BigText(
-                  textbody: 'Your cart history',
-                  color: Colors.white,
-                  size: 24,
-                ),
-                AppIcons(
-                  icon: Icons.shopping_cart_outlined,
-                  iconColor: Colors.white,
-                  iconSize: 30,
-                  backgruondcolor: AppColors.mainColor,
-                )
-              ],
-            ),
-          ),
+          // Container(
+          //   decoration: BoxDecoration(color: AppColors.mainColor, boxShadow: [
+          //     BoxShadow(
+          //       color: Colors.grey[400]!,
+          //       offset: const Offset(
+          //         1,
+          //         1.2,
+          //       ),
+          //       blurRadius: 1.0,
+          //       spreadRadius: 1.0,
+          //     ),
+          //   ]),
+          //   alignment: Alignment.bottomCenter,
+          //   width: width,
+          //   height: height * 0.10,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //     children: [
+          //       BigText(
+          //         textbody: 'Your cart history',
+          //         color: Colors.white,
+          //         size: 24,
+          //       ),
+          //       AppIcons(
+          //         icon: Icons.shopping_cart_outlined,
+          //         iconColor: Colors.white,
+          //         iconSize: 30,
+          //         backgruondcolor: AppColors.mainColor,
+          //       )
+          //     ],
+          //   ),
+          // ),
           Expanded(
               child: Container(
             margin: const EdgeInsets.only(left: 20, right: 20, top: 0),

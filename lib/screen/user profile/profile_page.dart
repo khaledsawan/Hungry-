@@ -57,11 +57,16 @@ class _ProfilePageState extends State<ProfilePage> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
-          title: const Center(
-              child: Text(
-            'Profile',
-            style: TextStyle(fontSize: 24),
-          )),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: const [
+              Text(
+                'Profile',
+                style: TextStyle(fontSize: 24),
+              ),
+              Icon(Icons.person_pin_outlined,size: 35,)
+            ],
+          ),
         ),
         backgroundColor: Colors.white,
         body: _isLogin
@@ -279,10 +284,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Center(
                       child: Container(
-                        width: width-20,
-                          height: height*0.25,
+                          width: width - 20,
+                          height: height * 0.25,
                           child: Image.asset('assets/image/notlogin.png')),
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: height * 0.02,
                     ),
                     Container(
@@ -325,7 +331,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onTap: () {
                                   Get.toNamed(AppRoutes.LoginPage);
                                 },
-                                child:  Icon(
+                                child: Icon(
                                   Icons.login_outlined,
                                   color: AppColors.yellowColor,
                                   size: 30,
