@@ -42,7 +42,7 @@ class SettingPage extends StatelessWidget {
     );
 // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: const Text('Choose Your Language'),
+      title:  Text('Choose Your Language'.tr),
       content: SizedBox(
           width: double.maxFinite,
           child: ListView.separated(

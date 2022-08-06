@@ -51,7 +51,6 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
               'Your Cart History',
               style: TextStyle(fontSize: 24),
             ),
-            Icon(Icons.shopping_cart_outlined,size: 35,),
           ],
         ),
       ),
@@ -91,7 +90,7 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
           // ),
           Expanded(
               child: Container(
-            margin: const EdgeInsets.only(left: 20, right: 20, top: 0),
+            margin: const EdgeInsets.only(left: 20, right: 20, top: 8),
             width: width,
             height: 150,
             child: CartHistoryList.isNotEmpty
@@ -128,7 +127,7 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                                           ListCounter++;
                                         }
                                         print('test the image ////' +
-                                            CartHistoryList[0].img.toString());
+                                            CartHistoryList[i].img.toString());
                                         return index <= 2
                                             ? Container(
                                                 margin:
@@ -151,7 +150,7 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                                                                     .BASE_URL +
                                                                 "/uploads/" +
                                                                 CartHistoryList[
-                                                                        0]
+                                                                        index]
                                                                     .img!))),
                                               )
                                             : Container();

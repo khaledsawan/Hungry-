@@ -61,7 +61,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
         userProfileController.updateUserProfile(UpdateProfileModel(
             phone: int.parse(phoneController.text.trim()),
-
             email: emailController.text.trim(),
             f_name: nameController.text.trim()));
       }
@@ -70,11 +69,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
-          title: const Center(
-              child: Text(
-            'Edit Profile',
-            style: TextStyle(fontSize: 24),
-          )),
+          title: Row(
+            children:  [
+              Text(
+                'Edit Profile'.tr,
+                style: const TextStyle(fontSize: 24),
+              ),
+            ],
+          ),
         ),
         body: GetBuilder<UserProfileController>(
           builder: (userController) {
@@ -99,7 +101,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: Container(
                                 width: width - 10,
                                 height: height * 0.1,
-                                child: Image.asset('assets/image/settings.png')),
+                                child:
+                                    Image.asset('assets/image/settings.png')),
                           ),
                         ]),
                         SizedBox(

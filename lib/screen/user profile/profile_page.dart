@@ -56,11 +56,16 @@ class _ProfilePageState extends State<ProfilePage> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
-          title: const Center(
-              child: Text(
-            'Profile',
-            style: TextStyle(fontSize: 24),
-          )),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: const [
+              Text(
+                'Your Profile',
+                style: TextStyle(fontSize: 24),
+              ),
+
+            ],
+          ),
         ),
         backgroundColor: Colors.white,
         body: _isLogin

@@ -42,7 +42,7 @@ class AboutUsPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
           title:  Text(
-            '          Who we are',
+            'Who we are',
             style: TextStyle(fontSize: 24),
           )
         ),
@@ -87,7 +87,7 @@ class AboutUsPage extends StatelessWidget {
                   },
                   child: IconThanText(
                       icon: Icons.phone_android_outlined,
-                      text: '0967184204',
+                      text: '+963 0967184204',
                       color: AppColors.mainColor,
                     textColor: Colors.blue,),
                 ),
@@ -102,7 +102,7 @@ class AboutUsPage extends StatelessWidget {
                     _openntelegram();  },
                   child: IconThanText(
                       icon: Icons.telegram_outlined,
-                      text: 'https://t.me/Al_Hornet',
+                      text: 'https://t.me/KHALEDSAWAN',
                       color: AppColors.mainColor,
                     textColor: Colors.blue,),
                 ),

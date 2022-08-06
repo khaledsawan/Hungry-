@@ -138,31 +138,6 @@ class CartController extends GetxController {
   update();
   }
 
-  // List<CartModle> get getcartHistory_listed {
-  //   List<CartModle> storageHistoryListListed = [];
-  //   for (int i = 0; i < storageHistoryList.length; i++) {
-  //     //storageHistoryList.contains();
-  //   }
-  //   return storageHistoryListListed;
-  // }
 
-// Map<String,int> get preorderListSection{
-//   List<CartModle> CartHistoryList = cartRepo.getcartHistory();
-//   for (int i = 0; i < CartHistoryList.length; i++) {
-//     if (cartItemsPreOrder.containsKey(CartHistoryList[i].time)) {
-//       cartItemsPreOrder.update(
-//           CartHistoryList[i].time.toString(), (value) => ++value);
-//     } else {
-//       cartItemsPreOrder.update(
-//           CartHistoryList[i].time.toString(), (value) => 1);
-//     }
-//   }
-//   List<int> cartOrderTimeToList(){
-//     return cartItemsPreOrder.entries.map((e) => e.value).toList();
-//   }
-//    _orderTime=cartOrderTimeToList();
-//
-//   return   cartItemsPreOrder;
-// }
 
 }
