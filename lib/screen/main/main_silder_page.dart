@@ -57,8 +57,8 @@ class _MainSilederPageState extends State<MainSilederPage> {
       child: Column(
         children: [
           GetBuilder<PopularProductController>(
-            builder: (popularcontroller) {
-              return popularcontroller.isLoaded
+            builder: (popularController) {
+              return !popularController.isLoaded
                   ? Container(margin: EdgeInsets.only(top: 5),
                 padding: EdgeInsets.only(top:5),
                       height: height * 0.40,
@@ -67,10 +67,10 @@ class _MainSilederPageState extends State<MainSilederPage> {
                           controller: _pagecontroller,
                           physics:  BouncingScrollPhysics(),
                           itemCount:
-                              popularcontroller.popularProductList.length,
+                              popularController.popularProductList.length,
                           itemBuilder: (context, index) {
                             return _buildPageItem_popular(index,
-                                popularcontroller.popularProductList[index]);
+                                popularController.popularProductList[index]);
                           }),
                     )
                   : CircularProgressIndicator(
@@ -128,10 +128,10 @@ class _MainSilederPageState extends State<MainSilederPage> {
               return ListView.builder(
                 shrinkWrap: true,
                 physics:  NeverScrollableScrollPhysics(),
-                itemCount: recommended.popularProductList.length,
+                itemCount: recommended.recommendedProductList.length,
                 itemBuilder: (context, index) {
                   return _buildPageRecommended(
-                      index, recommended.popularProductList[index]);
+                      index, recommended.recommendedProductList[index]);
                 },
               );
             },

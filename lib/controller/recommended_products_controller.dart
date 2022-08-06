@@ -11,7 +11,7 @@ class RecommendedProductsController extends GetxController {
   RecommendedProductsController({required this.recommenedproductrepo});
 
   late List<ProductModal> _productList = [];
-  List<ProductModal> get popularProductList => _productList;
+  List<ProductModal> get recommendedProductList => _productList;
 
   late CartController _cartController;
 
@@ -26,13 +26,15 @@ class RecommendedProductsController extends GetxController {
 
   Future<void> getRecommendedProductList() async {
     Response response = await recommenedproductrepo.GetProductList();
+    _isLoaded = true;
     if (response.statusCode == 200) {
       _productList = [];
       _productList.addAll(Product.fromJson(response.body).products);
       print(_productList);
-      _isLoaded = true;
+      _isLoaded = false;
       update();
     } else {
+      _isLoaded = false;
       print("No products");
     }
   }

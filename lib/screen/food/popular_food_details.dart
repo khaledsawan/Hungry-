@@ -32,7 +32,6 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
         backgroundColor: Colors.white,
         body: Stack(
           children: [
-
             Positioned(
                 left: 0,
                 right: 0,

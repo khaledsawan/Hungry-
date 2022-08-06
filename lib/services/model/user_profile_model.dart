@@ -1,7 +1,7 @@
 class UserProfileModel {
   int? id;
   String? fName;
-  String? phone;
+  int? phone;
   String? email;
   int? status;
   Null? emailVerifiedAt;

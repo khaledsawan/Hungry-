@@ -18,7 +18,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
  Future<void> _loadResourses() async {
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductsController>().getRecommendedProductList();
-  }
+    print('Get.find<RecommendedProductsController>().popularProductList');
+    print(Get.find<PopularProductController>().popularProductList);
+
+ }
 
   @override
   Widget build(BuildContext context) {
