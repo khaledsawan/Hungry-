@@ -114,7 +114,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.language_outlined,
-                            text: 'Language',
+                            text: 'Language'.tr,
                           ),
                           GestureDetector(
                             onTap: () {
@@ -142,7 +142,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.person_outline,
-                            text: 'Edit profile',
+                            text: 'Edit profile'.tr,
                           ),
                           GestureDetector(
                             onTap: () {
@@ -171,7 +171,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.dark_mode_outlined,
-                            text: 'Them mode',
+                            text: 'Them mode'.tr,
                           ),
                           GestureDetector(
                             onTap: () {
@@ -204,7 +204,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.support_agent_outlined,
-                            text: 'Support',
+                            text: 'Support'.tr,
                           ),
                           GestureDetector(
                             onTap: () {
@@ -233,7 +233,7 @@ class SettingPage extends StatelessWidget {
                           IconThanText(
                             color: AppColors.mainColor,
                             icon: Icons.group_outlined,
-                            text: 'About us',
+                            text: 'About us'.tr,
                           ),
                           GestureDetector(
                             onTap: () {
@@ -250,7 +250,7 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      Divider(
+                      const Divider(
                         color: AppColors.textColor,
                       ),
                       SizedBox(
