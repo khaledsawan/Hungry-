@@ -29,14 +29,14 @@ class _CartPageState extends State<CartPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       bottomNavigationBar:
-          GetBuilder<CartController>(builder: (cartcontroller) {
-        return cartcontroller.cartItems.isNotEmpty
+          GetBuilder<CartController>(builder: (cartController) {
+        return cartController.cartItems.isNotEmpty
             ? Container(
                 padding: const EdgeInsets.fromLTRB(30, 25, 30, 20),
                 decoration: const BoxDecoration(
-                    color: Color(0xfff5f5f5),
+                    color: AppColors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
@@ -49,21 +49,22 @@ class _CartPageState extends State<CartPage> {
                       height: 55,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
+                        color: AppColors.white,
                       ),
                       child: Center(
                           child: BigText(
                               textbody:
-                                  '\$' + cartcontroller.totalprice.toString())),
+                                  '\$' + cartController.totalprice.toString())),
                     ),
                     GestureDetector(
                       onTap: () {
                         if (Get.find<AuthController>().isAuth()) {
-                          cartcontroller.addToHistory();
+                          cartController.addToHistory();
                           if (Get.find<AddressController>()
                               .addressList
                               .isEmpty) {
-                            ShowCustomSnackparRed('add your address pleas', 'ops');
+                            showCustomSnackParRed(
+                                'add your address pleas', 'ops');
                             Get.toNamed(AppRoutes.AddAddress);
                           } else {
                             var user = Get.find<UserProfileController>()
@@ -71,7 +72,7 @@ class _CartPageState extends State<CartPage> {
                             var location =
                                 Get.find<AddressController>().getUserAddress();
                             var cart = Get.find<CartController>().cartItems;
-                            PlaceOrderModle placeOrderModle = PlaceOrderModle(
+                            PlaceOrderModle placeOrderModel = PlaceOrderModle(
                                 latitude: location.latitude,
                                 orderAmount: 100.0,
                                 scheduleAt: '',
@@ -83,10 +84,10 @@ class _CartPageState extends State<CartPage> {
                                 cart: cart,
                                 orderNote: 'not about the food ');
                             Get.find<PlaceOrderController>()
-                                .placeorder(_callback, placeOrderModle);
+                                .placeOrder(_callback, placeOrderModel);
                           }
                         } else {
-                          ShowCustomSnackparRed('you need to SignIn', 'ops');
+                          showCustomSnackParRed('you need to SignIn', 'ops');
                           Get.toNamed(AppRoutes.LoginPage);
                         }
                       },
@@ -100,7 +101,7 @@ class _CartPageState extends State<CartPage> {
                           child: Center(
                             child: BigText(
                               textbody: 'Check out',
-                              color: Colors.white,
+                              color: AppColors.white,
                             ),
                           )),
                     ),
@@ -110,7 +111,7 @@ class _CartPageState extends State<CartPage> {
             : Container(
                 padding: const EdgeInsets.fromLTRB(30, 25, 30, 20),
                 decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
@@ -124,7 +125,7 @@ class _CartPageState extends State<CartPage> {
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 25),
+            margin: const EdgeInsets.only(top: 70),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -134,11 +135,11 @@ class _CartPageState extends State<CartPage> {
                     onTap: () {
                       Get.back();
                     },
-                    child: AppIcons(
+                    child: const AppIcons(
                       icon: Icons.arrow_back_ios,
                       iconSize: 20,
-                      backgruondcolor: AppColors.mainColor,
-                      iconColor: Colors.white,
+                      backGroundColor: AppColors.mainColor,
+                      iconColor: AppColors.white,
                     ),
                   ),
                 ),
@@ -150,11 +151,11 @@ class _CartPageState extends State<CartPage> {
                         onTap: () {
                           Get.toNamed(AppRoutes.InitHome);
                         },
-                        child: AppIcons(
+                        child: const AppIcons(
                           icon: Icons.home,
                           iconSize: 20,
-                          backgruondcolor: AppColors.mainColor,
-                          iconColor: Colors.white,
+                          backGroundColor: AppColors.mainColor,
+                          iconColor: AppColors.white,
                         ),
                       ),
                     ),
@@ -165,13 +166,13 @@ class _CartPageState extends State<CartPage> {
                       margin: const EdgeInsets.only(left: 20),
                       child: GestureDetector(
                         onTap: () {
-                          Get.to(() => CartHistoryPage());
+                          Get.to(() => const CartHistoryPage());
                         },
-                        child: AppIcons(
+                        child: const AppIcons(
                           icon: Icons.shopping_cart,
                           iconSize: 20,
-                          backgruondcolor: AppColors.mainColor,
-                          iconColor: Colors.white,
+                          backGroundColor: AppColors.mainColor,
+                          iconColor: AppColors.white,
                         ),
                       ),
                     ),
@@ -181,23 +182,23 @@ class _CartPageState extends State<CartPage> {
             ),
           ),
           Expanded(
-            child: GetBuilder<CartController>(builder: (cartcontroller) {
-              var cartList = cartcontroller.cartItems;
+            child: GetBuilder<CartController>(builder: (cartController) {
+              var cartList = cartController.cartItems;
               return cartList.isNotEmpty
                   ? ListView.builder(
                       itemCount: cartList.length,
                       itemBuilder: (context, index) {
                         return cartList.isEmpty
                             ? const Text('is Empty')
-                            : CartBody(
-                                index, height, cartList[index], cartcontroller);
+                            : cartBody(
+                                index, height, cartList[index], cartController);
                       },
                     )
                   : Container(
                       alignment: Alignment.center,
                       child: Column(
                         children: [
-                          Container(
+                          SizedBox(
                               height: height * 0.5,
                               width: width * 0.7,
                               child:
@@ -215,8 +216,8 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  CartBody(int index, double height, CartModle cartItem,
-      CartController cartcontroller) {
+  cartBody(int index, double height, CartModle cartItem,
+      CartController cartController) {
     return Container(
       color: Colors.white,
       margin: const EdgeInsets.only(bottom: 15),
@@ -249,7 +250,7 @@ class _CartPageState extends State<CartPage> {
                       spreadRadius: 1.0,
                     ), //BoxShadow
                     BoxShadow(
-                      color: Colors.white,
+                      color: AppColors.white,
                       offset: Offset(0.0, 0.0),
                       blurRadius: 0.0,
                       spreadRadius: 0.0,
@@ -297,12 +298,12 @@ class _CartPageState extends State<CartPage> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              cartcontroller.additem(
+                              cartController.additem(
                                   cartItem.product!, 1, cartItem.category!);
                             },
-                            child: AppIcons(
+                            child:const AppIcons(
                               icon: Icons.add,
-                              backgruondcolor: Colors.white,
+                              backGroundColor: AppColors.white,
                               iconSize: 22,
                             ),
                           ),
@@ -311,12 +312,12 @@ class _CartPageState extends State<CartPage> {
                               padding: const EdgeInsets.only(bottom: 10),
                               child: GestureDetector(
                                 onTap: () {
-                                  cartcontroller.additem(cartItem.product!, -1,
+                                  cartController.additem(cartItem.product!, -1,
                                       cartItem.category!);
                                 },
-                                child: AppIcons(
+                                child:const AppIcons(
                                   icon: Icons.minimize,
-                                  backgruondcolor: Colors.white,
+                                  backGroundColor: AppColors.white,
                                   iconSize: 22,
                                 ),
                               )),
@@ -341,6 +342,6 @@ void _callback(bool isOrder, String massage, String orderId) {
       {"user_Id": Get.find<UserProfileController>().userProfileModel?.id!}
     ]);
   } else {
-    ShowCustomSnackparRed(massage, '');
+    showCustomSnackParRed(massage, '');
   }
 }

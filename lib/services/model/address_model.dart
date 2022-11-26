@@ -10,7 +10,7 @@ class AddressModel {
 
   AddressModel({id, required addressType, contactPersonName, contactPersonNumber, address, latitude,
       longitude}) {
-    this._id = id;
+    _id = id;
     this._addressType = addressType;
     this._contactPersonName = contactPersonName;
     this._contactPersonNumber = contactPersonNumber;

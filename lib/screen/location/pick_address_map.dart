@@ -75,7 +75,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     child: !addressController.loading
                         ? Image.asset("assets/image/pick_marker.png",
                             height: 50, width: 50)
-                        : Center(
+                        :const  Center(
                             child: CircularProgressIndicator(
                             color: AppColors.mainColor,
                           )),
@@ -87,10 +87,10 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     child: InkWell(
                       onTap: () {
                         Get.dialog(SearchLocationDialoguePage(
-                            MapConroller: _mapController));
+                            mapController: _mapController));
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding:const EdgeInsets.symmetric(horizontal: 10),
                         height: 50,
                         decoration: BoxDecoration(
                           color: AppColors.mainColor,
@@ -100,21 +100,21 @@ class _PickAddressMapState extends State<PickAddressMap> {
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.location_on,
+                            const   Icon(Icons.location_on,
                                 size: 42, color: AppColors.yellowColor),
                             Expanded(
                                 child: Text(
-                              addressController.pickplacemark.name ??
+                              addressController.pickPlaceMark.name ??
                                   'not billing the account',
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
+                              const   TextStyle(color: Colors.white, fontSize: 16),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             )),
-                            SizedBox(
+                            const  SizedBox(
                               width: 10,
                             ),
-                            Icon(
+                            const  Icon(
                               Icons.search_outlined,
                               color: AppColors.mainColor,
                             )
@@ -128,7 +128,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     left: 20,
                     right: 20,
                     child: addressController.isLoading
-                        ? Center(child: CircularProgressIndicator())
+                        ? const Center(child: CircularProgressIndicator())
                         : CustomButton(
                             width: MediaQuery.of(context).size.width - 50,
                             buttonText: addressController.inZone
@@ -143,12 +143,11 @@ class _PickAddressMapState extends State<PickAddressMap> {
                                     if (addressController
                                                 .pickPosition.latitude !=
                                             0 &&
-                                        addressController.pickplacemark.name !=
+                                        addressController.pickPlaceMark.name !=
                                             null) {
                                       if (widget.fromAddress!) {
                                         if (widget.googleMapController !=
                                             null) {
-                                          print("Now you can clicked on this");
                                           addressController.setAddAddressData();
                                           widget.googleMapController!
                                               .moveCamera(CameraUpdate

@@ -13,7 +13,7 @@ class IconThanText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
        children: [
-          AppIcons(icon: icon,containerSize: 40,iconSize: 24,backgruondcolor: color,iconColor: Colors.white,),
+          AppIcons(icon: icon,containerSize: 40,iconSize: 24,backGroundColor: color,iconColor: Colors.white,),
           const SizedBox(width: 15,),
           BigText(textbody: text,color: textColor,),
        ],

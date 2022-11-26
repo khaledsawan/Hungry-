@@ -83,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           icon: Icons.person,
                           iconSize: 75,
                           containerSize: 150,
-                          backgruondcolor: AppColors.mainColor,
+                          backGroundColor: AppColors.mainColor,
                           iconColor: Colors.white,
                         ),
                         Column(

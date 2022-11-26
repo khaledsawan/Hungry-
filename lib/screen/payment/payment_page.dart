@@ -1,18 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import '../../services/model/order_model.dart';
 import '../../utils/AppConstants.dart';
 import '../../utils/colors.dart';
 
 class PaymentPage extends StatefulWidget {
   final OrderModel orderModel;
-  PaymentPage({required this.orderModel});
+  const PaymentPage({required this.orderModel});
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -34,21 +29,14 @@ class _PaymentScreenState extends State<PaymentPage> {
     super.initState();
     selectedUrl =
         '${AppConstants.BASE_URL}/payment-mobile?customer_id=${widget.orderModel.userId}&order_id=${widget.orderModel.id}';
-    //selectedUrl="https://mvs.bslmeiyu.com";
-    // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   @override
   Widget build(BuildContext context) {
-    // int id =data[0]['id']!;
-    // int userid =data[0]['user_Id'];
-    // print("//////////////////"+id.toString());
-    // print("//////////////////"+userid.toString());
-
     return WillPopScope(
       onWillPop: () => _exitApp(context),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor:AppColors.white,
         appBar: AppBar(
           title: const Text("Payment"),
           leading: IconButton(
@@ -58,7 +46,7 @@ class _PaymentScreenState extends State<PaymentPage> {
           backgroundColor: AppColors.mainColor,
         ),
         body: Center(
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Stack(
               children: [
@@ -75,18 +63,14 @@ class _PaymentScreenState extends State<PaymentPage> {
                     //_controller.future.catchError(onError)
                   },
                   onProgress: (int progress) {
-                    print("WebView is loading (progress : $progress%)");
                   },
                   onPageStarted: (String url) {
-                    print('Page started loading: $url');
                     setState(() {
                       _isLoading = true;
                     });
-                    print("printing urls " + url.toString());
                     _redirect(url);
                   },
                   onPageFinished: (String url) {
-                    print('Page finished loading: $url');
                     setState(() {
                       _isLoading = false;
                     });
@@ -99,7 +83,7 @@ class _PaymentScreenState extends State<PaymentPage> {
                             valueColor: AlwaysStoppedAnimation<Color>(
                                 Theme.of(context).primaryColor)),
                       )
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               ],
             ),
           ),

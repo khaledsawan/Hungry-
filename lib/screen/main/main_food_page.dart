@@ -15,73 +15,70 @@ class MainFoodPage extends StatefulWidget {
 }
 
 class _MainFoodPageState extends State<MainFoodPage> {
- Future<void> _loadResourses() async {
+ Future<void> _loadRes() async {
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductsController>().getRecommendedProductList();
-    print('Get.find<RecommendedProductsController>().popularProductList');
-    print(Get.find<PopularProductController>().popularProductList);
 
  }
 
   @override
   Widget build(BuildContext context) {
-   double width=MediaQuery.of(context).size.width;
-   double height=MediaQuery.of(context).size.height;
     return RefreshIndicator(
-      displacement: height*0.05,
-      onRefresh:_loadResourses,
+      onRefresh:_loadRes,
       child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              color: Colors.white,
-              margin: const EdgeInsets.only(top: 30, right: 5, left: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        margin:EdgeInsets.only(left: 8),
-                        child: BigText(
-                          textbody: 'Syria',
-                          color: AppColors.mainColor,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                color: AppColors.white,
+                margin: const EdgeInsets.only(top: 0, right: 5, left: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          margin:const EdgeInsets.only(left: 8),
+                          child: BigText(
+                            textbody: 'Syria',
+                            color: AppColors.mainColor,
+                          ),
                         ),
+                        Container(
+                          margin:const EdgeInsets.only(left: 8),
+                          child: Row(
+                            children: [
+                              SmailText(
+                                textbody: 'city',
+                                color:AppColors.black,
+                              ),
+                              const Icon(
+                                Icons.arrow_drop_down_rounded,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: const Icon(
+                        Icons.search,
+                        size: 30,
+                        color:AppColors.white,
                       ),
-                      Container(
-                        margin:EdgeInsets.only(left: 8),
-                        child: Row(
-                          children: [
-                            SmailText(
-                              textbody: 'city',
-                              color: Colors.black,
-                            ),
-                            const Icon(
-                              Icons.arrow_drop_down_rounded,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    child: const Icon(
-                      Icons.search,
-                      size: 30,
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        color: AppColors.mainColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      color: AppColors.mainColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Expanded(child: SingleChildScrollView(child: MainSilederPage())),
-          ],
+            const  Expanded(child: SingleChildScrollView(child: MainSliderPage())),
+            ],
+          ),
         ),
       ),
     );

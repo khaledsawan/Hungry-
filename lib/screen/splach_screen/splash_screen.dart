@@ -9,21 +9,21 @@ class SplachScreen extends StatefulWidget {
   const SplachScreen({Key? key}) : super(key: key);
 
   @override
-  State<SplachScreen> createState() => _SplachScreenState();
+  State<SplachScreen> createState() => _SplashScreenState();
 }
 
-class _SplachScreenState extends State<SplachScreen>
+class _SplashScreenState extends State<SplachScreen>
     with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
-  _loadResourses() async {
+  _loadRes() async {
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductsController>().getRecommendedProductList();
   }
 
   @override
   void initState() {
-    _loadResourses();
+    _loadRes();
     controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1))
           ..forward();
@@ -39,7 +39,7 @@ class _SplachScreenState extends State<SplachScreen>
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Container(
+        child: SizedBox(
           width: width * 0.7,
           height: height * 0.4,
           child: Column(

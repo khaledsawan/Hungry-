@@ -11,19 +11,18 @@ class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
   SharedPreferences sharedPreferences;
   AuthController({required this.authRepo,required this.sharedPreferences});
-  bool _isloading = false;
-  bool get isloading => _isloading;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
 
-  Future<ResponseModel> registeration(UserSignUpModel userSignUpModel) async {
-    _isloading = true;
+  Future<ResponseModel> registerMethod(UserSignUpModel userSignUpModel) async {
+    _isLoading = true;
     ResponseModel responseModel;
     Response response = await authRepo.registeration(userSignUpModel);
     if (response.statusCode == 200) {
-      _isloading = true;
+      _isLoading = true;
       responseModel =
           ResponseModel(massage: response.body["token"], isSuccessful: true);
       authRepo.saveUserToken(response.body["token"]);
-      print('token=>'+response.body["token"].toString());
       sharedPreferences.setString(AppConstants.TOKEN, response.body["token"].toString());
       saveUserPhoneAndPassword(
           userSignUpModel.phone!, userSignUpModel.password!);
@@ -31,27 +30,26 @@ class AuthController extends GetxController implements GetxService {
       responseModel =
           ResponseModel(massage: response.statusText!, isSuccessful: false);
     }
-    _isloading = false;
+    _isLoading = false;
     update();
     return responseModel;
   }
 
-  Future<ResponseModel> login_function(UserSingInModel userLoginModel) async {
-    _isloading = true;
+  Future<ResponseModel> loginMethod(UserSingInModel userLoginModel) async {
+    _isLoading = true;
     ResponseModel responseModel;
     Response response = await authRepo.login_function(userLoginModel);
     if (response.statusCode == 200) {
-      _isloading = true;
+      _isLoading = true;
       responseModel = ResponseModel(massage: response.body["token"], isSuccessful: true);
       authRepo.saveUserToken(response.body["token"]);
       sharedPreferences.setString(AppConstants.TOKEN, response.body["token"].toString());
-      print('token=>'+response.body["token"].toString());
       saveUserPhoneAndPassword(userLoginModel.phone!, userLoginModel.password!);
     } else {
       responseModel =
           ResponseModel(massage: response.statusText!, isSuccessful: false);
     }
-    _isloading = false;
+    _isLoading = false;
     update();
     return responseModel;
   }
@@ -68,11 +66,4 @@ class AuthController extends GetxController implements GetxService {
   bool isAuth() {
     return authRepo.isAuth();
   }
-
-  String gettoken(){
-    return  authRepo.getToken();
-  }
-
-
-
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/widgets/button/custom_button.dart';
 

@@ -7,14 +7,13 @@ import '../../widgets/Custom_snackpar/show_custom_snackpar_red.dart';
 import '../../widgets/inputtextform/inputtextform.dart';
 
 class EditProfilePage extends StatefulWidget {
-  EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({Key? key}) : super(key: key);
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  bool _isAuth = false;
   String userId = '';
 
   TextEditingController nameController = TextEditingController();
@@ -26,7 +25,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    print('init ');
     nameController.text =
         Get.find<UserProfileController>().userProfileModel!.fName.toString();
     emailController.text =
@@ -49,16 +47,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     update(UserProfileController userProfileController) {
       if (nameController.text.trim().isEmpty) {
-        ShowCustomSnackparRed('at lest set 1 charters', 'short name');
+        showCustomSnackParRed('at lest set 1 charters', 'short name');
       } else if (!GetUtils.isEmail(emailController.text.trim())) {
-        ShowCustomSnackparRed('Examble@examble.com', 'not email');
+        showCustomSnackParRed('Examble@examble.com', 'not email');
       } else if (!GetUtils.isNum(phoneController.text.trim())) {
-        ShowCustomSnackparRed('only number', 'not number');
+        showCustomSnackParRed('only number', 'not number');
       } else {
-        print(phoneController.text.trim());
-        print(emailController.text.trim());
-        print(nameController.text.trim());
-
         userProfileController.updateUserProfile(UpdateProfileModel(
             phone: int.parse(phoneController.text.trim()),
             email: emailController.text.trim(),
@@ -88,7 +82,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           height: height * 0.05,
                         ),
                         Stack(children: [
-                          Container(
+                          SizedBox(
                               width: width - 17,
                               height: height * 0.22,
                               child:
@@ -98,7 +92,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             right: 40,
                             height: 60,
                             top: 30,
-                            child: Container(
+                            child: SizedBox(
                                 width: width - 10,
                                 height: height * 0.1,
                                 child:
@@ -108,48 +102,45 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         SizedBox(
                           height: height * 0.05,
                         ),
-                        Container(
-                            child: Column(
+                        Column(
                           children: [
-                            InPutTextForm(
-                              textEditingController: nameController,
-                              color: AppColors.mainColor,
-                              hintText: 'name',
-                              icon: Icons.person_outline,
-                              hintcolor: Colors.grey,
-                            ),
+                        InPutTextForm(
+                          textEditingController: nameController,
+                          color: AppColors.mainColor,
+                          hintText: 'name',
+                          icon: Icons.person_outline,
+                          hintcolor: Colors.grey,
+                        ),
                           ],
-                        )),
+                        ),
                         SizedBox(
                           height: height * 0.05,
                         ),
-                        Container(
-                            child: Column(
+                        Column(
                           children: [
-                            InPutTextForm(
-                              textEditingController: emailController,
-                              color: AppColors.mainColor,
-                              hintText: 'yourEmail@example.com',
-                              icon: Icons.email_outlined,
-                              hintcolor: Colors.grey,
-                            ),
+                        InPutTextForm(
+                          textEditingController: emailController,
+                          color: AppColors.mainColor,
+                          hintText: 'yourEmail@example.com',
+                          icon: Icons.email_outlined,
+                          hintcolor: Colors.grey,
+                        ),
                           ],
-                        )),
+                        ),
                         SizedBox(
                           height: height * 0.05,
                         ),
-                        Container(
-                            child: Column(
+                        Column(
                           children: [
-                            InPutTextForm(
-                              textEditingController: phoneController,
-                              color: AppColors.mainColor,
-                              hintText: 'phone',
-                              icon: Icons.phone_iphone_outlined,
-                              hintcolor: Colors.grey,
-                            ),
+                        InPutTextForm(
+                          textEditingController: phoneController,
+                          color: AppColors.mainColor,
+                          hintText: 'phone',
+                          icon: Icons.phone_iphone_outlined,
+                          hintcolor: Colors.grey,
+                        ),
                           ],
-                        )),
+                        ),
                         SizedBox(
                           height: height * 0.08,
                         ),
@@ -175,7 +166,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               child: Text(
                                 'Update profile',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 25),
+                                    color: AppColors.white, fontSize: 25),
                               ),
                             ),
                           ),
@@ -183,7 +174,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       ],
                     ),
                   )
-                : Center(
+                :const Center(
                     child: CircularProgressIndicator(
                     color: AppColors.mainColor,
                   ));

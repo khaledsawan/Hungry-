@@ -19,26 +19,26 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void _login_method(AuthController authController) {
+  void _loginMethod(AuthController authController) {
     String phone = phoneController.text.trim();
     String password = passwordController.text.trim();
     if (phone.isEmpty) {
-      ShowCustomSnackparRed('enter phone number ', 'empty field');
+      showCustomSnackParRed('enter phone number ', 'empty field');
     } else if (!phone.isNum) {
-      ShowCustomSnackparRed('you need to enter numbers only', 'not phone number');
+      showCustomSnackParRed('you need to enter numbers only', 'not phone number');
     } else if (password.isEmpty) {
-      ShowCustomSnackparRed('enter your password ', 'empty field');
+      showCustomSnackParRed('enter your password ', 'empty field');
     } else if (password.length < 6) {
-      ShowCustomSnackparRed(
+      showCustomSnackParRed(
           'short password must more than 6 characters', 'short password');
     } else {
-      UserSingInModel userLoginModel = new UserSingInModel(phone, password);
+      UserSingInModel userLoginModel = UserSingInModel(phone, password);
       authController.login_function(userLoginModel).then((status) {
         if (status.isSuccessful!) {
-          print('registeration is done');
+          print('Registration is done');
           Get.offAllNamed(AppRoutes.InitHome);
         } else {
-          ShowCustomSnackparRed(
+          showCustomSnackParRed(
               status.massage.toString() +
                   ' password or phone number not correct',
               'error');
@@ -100,7 +100,7 @@ class _SignInPageState extends State<SignInPage> {
                                 decoration: const BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(35)),
-                                    color: Colors.white,
+                                    color:AppColors.white,
                                     boxShadow: [
                                       BoxShadow(
                                         blurRadius: 6,
@@ -116,24 +116,24 @@ class _SignInPageState extends State<SignInPage> {
                                   decoration: const InputDecoration(
                                     hintText: 'phone number',
                                     hintStyle:
-                                        TextStyle(color: Color(0xFFccc7c5)),
+                                        TextStyle(color: AppColors.buttonBackgroundColor,),
                                     focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(35)),
                                         borderSide: BorderSide(
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                           width: 1,
                                         )),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(35)),
                                         borderSide: BorderSide(
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                           width: 1,
                                         )),
                                     prefixIcon: Icon(
                                       Icons.phone_android,
-                                      color: Color(0xFF89dad0),
+                                      color: AppColors.mainColor,
                                     ),
                                   ),
                                 ),
@@ -143,7 +143,7 @@ class _SignInPageState extends State<SignInPage> {
                                 decoration: const BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(35)),
-                                    color: Colors.white,
+                                    color:AppColors.white,
                                     boxShadow: [
                                       BoxShadow(
                                         blurRadius: 6,
@@ -165,14 +165,14 @@ class _SignInPageState extends State<SignInPage> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(35)),
                                         borderSide: BorderSide(
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                           width: 1,
                                         )),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(35)),
                                         borderSide: BorderSide(
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                           width: 1,
                                         )),
                                     prefixIcon: Padding(
@@ -180,7 +180,7 @@ class _SignInPageState extends State<SignInPage> {
                                           .only(), // add padding to adjust icon
                                       child: Icon(
                                         Icons.password,
-                                        color: Color(0xFF89dad0),
+                                        color: AppColors.mainColor,
                                       ),
                                     ),
                                   ),
@@ -206,7 +206,7 @@ class _SignInPageState extends State<SignInPage> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  _login_method(controller);
+                                  _loginMethod(controller);
                                 },
                                 child: Container(
                                   height: 70,
@@ -219,7 +219,7 @@ class _SignInPageState extends State<SignInPage> {
                                     child: Text(
                                       'Sign in ',
                                       style: TextStyle(
-                                          fontSize: 28, color: Colors.white),
+                                          fontSize: 28, color: AppColors.white,),
                                     ),
                                   ),
                                 ),
@@ -245,7 +245,7 @@ class _SignInPageState extends State<SignInPage> {
                                             },
                                           text: 'Create ',
                                           style: const TextStyle(
-                                              color: Colors.black,
+                                              color: AppColors.black,
                                               fontSize: 18)),
                                     ],
                                   ),
@@ -258,10 +258,10 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ],
                 )
-              : Center(
+              : const Center(
                   child: CircularProgressIndicator(
                     color: AppColors.mainColor,
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppColors.white,
                   ),
                 );
         }));

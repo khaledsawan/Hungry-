@@ -23,13 +23,14 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
   @override
   Widget build(BuildContext context) {
     ProductModal productModal = Get.arguments;
-    Get.find<PopularProductController>().initproduct(productModal, Get.find<CartController>());
+    Get.find<PopularProductController>()
+        .initproduct(productModal, Get.find<CartController>());
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
         endDrawerEnableOpenDragGesture: false,
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         body: Stack(
           children: [
             Positioned(
@@ -37,10 +38,10 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                 right: 0,
                 child: Container(
                   width: width,
-                  height: height * 0.4,
+                  height: height * 0.55,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     image: NetworkImage(
                       AppConstants.BASE_URL + "/uploads/" + productModal.img!,
                     ),
@@ -48,7 +49,7 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                 )),
             Positioned(
                 left: 20,
-                top: 40,
+                top: 70,
                 right: 20,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,52 +58,57 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                       onTap: () {
                         Get.back();
                       },
-                      child: AppIcons(
-                        icon: Icons.arrow_back_ios,
+                      child: const AppIcons(
+                        icon: Icons.arrow_back,
                       ),
                     ),
                     GestureDetector(onTap: () {
                       Get.to(() => const CartPage());
                     }, child:
-                    GetBuilder<CartController>(builder: (cartcontroller) {
+                        GetBuilder<CartController>(builder: (cartController) {
                       return Stack(
                         children: [
-                          AppIcons(
+                          const AppIcons(
                             icon: Icons.shopping_cart_outlined,
-                            backgruondcolor: Colors.white,
+                            backGroundColor: AppColors.white,
                             iconSize: 23,
                           ),
-                          cartcontroller.totalquantity>0?Positioned(
-                            left: 20,
-                            right: 1,
-
-                            child: Stack(children: [ AppIcons(
-                              icon: Icons.circle,
-                              iconSize: 18,
-                              containerSize: 18,
-                              iconColor: AppColors.mainColor,
-                            ),
-                              Positioned(
-                                // right: ,
-                                  top: 6,
-                                  left: 4,
-                                  child: SmailText(
-                                    textbody: cartcontroller.totalquantity.toString(),
-                                    color: Colors.blueGrey,
-                                  )),],),
-                          ):Container(),
-
+                          cartController.totalquantity > 0
+                              ? Positioned(
+                                  left: 20,
+                                  right: 1,
+                                  child: Stack(
+                                    children: [
+                                      const AppIcons(
+                                        icon: Icons.circle,
+                                        iconSize: 18,
+                                        containerSize: 18,
+                                        iconColor: AppColors.mainColor,
+                                      ),
+                                      Positioned(
+                                          // right: ,
+                                          top: 6,
+                                          left: 4,
+                                          child: SmailText(
+                                            textbody: cartController
+                                                .totalquantity
+                                                .toString(),
+                                            color: Colors.blueGrey,
+                                          )),
+                                    ],
+                                  ),
+                                )
+                              : Container(),
                         ],
                       );
                     })),
-
                   ],
                 )),
             Positioned(
                 left: 0,
                 right: 0,
                 bottom: 0,
-                top: height * 0.40 - 25,
+                top: height * 0.55 - 25,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -110,7 +116,7 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                       padding:
                           const EdgeInsets.only(top: 10, right: 10, left: 10),
                       decoration: const BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.white,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(30),
                             topRight: Radius.circular(30),
@@ -161,7 +167,7 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                color: Colors.white,
+                                color: AppColors.white,
                                 width: width,
                                 padding: const EdgeInsets.only(
                                     top: 10, right: 10, left: 10),
@@ -170,7 +176,7 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                               height: height * 0.015,
                             ),
                             Container(
-                                color: Colors.white,
+                                color: AppColors.white,
                                 width: width,
                                 padding: const EdgeInsets.only(
                                     right: 10, left: 10, top: 5),
@@ -185,12 +191,13 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
           ],
         ),
         bottomNavigationBar:
-            GetBuilder<CartController>(builder: (cartcontroller) {
-          return GetBuilder<PopularProductController>(builder: (popularcontroller) {
+            GetBuilder<CartController>(builder: (cartController) {
+          return GetBuilder<PopularProductController>(
+              builder: (popularController) {
             return Container(
-              padding: const EdgeInsets.fromLTRB(30, 25, 30, 20),
+              padding: const EdgeInsets.fromLTRB(10, 25, 10, 20),
               decoration: const BoxDecoration(
-                  color: Color(0xfff5f5f5),
+                  color: AppColors.buttonBackgroundColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -199,11 +206,10 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: width * 0.31,
                     height: 60,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
+                      color: AppColors.white,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -212,13 +218,16 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                             padding: const EdgeInsets.only(bottom: 10),
                             child: IconButton(
                                 onPressed: () {
-                                  popularcontroller.setQuantity(false);
+                                  popularController.setQuantity(false);
                                 },
                                 icon: const Icon(Icons.minimize))),
-                        BigText(textbody: popularcontroller.inCartItems.toString()),
+                        BigText(
+                            textbody: popularController.inCartItems.toString() +
+                                ' * \$' +
+                                productModal.price.toString()),
                         IconButton(
                             onPressed: () {
-                              popularcontroller.setQuantity(true);
+                              popularController.setQuantity(true);
                             },
                             icon: const Icon(Icons.add)),
                       ],
@@ -226,10 +235,9 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      popularcontroller.addItem(productModal,'Popular');
+                      popularController.addItem(productModal, 'Popular');
                     },
                     child: Container(
-                      width: width * 0.45,
                       height: 60,
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
@@ -238,7 +246,10 @@ class _PopularFoodDetailsState extends State<PopularFoodDetails> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          BigText(textbody: '\$' +productModal.price.toString()),
+                          BigText(
+                              textbody: '\$' +
+                                  popularController
+                                      .priceToString(productModal.price!)),
                           const SizedBox(
                             width: 10,
                           ),

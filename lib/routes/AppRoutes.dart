@@ -12,7 +12,6 @@ import 'package:shop_delivery_system/screen/user%20profile/edit_profile_page.dar
 import 'package:shop_delivery_system/screen/we/about_us_page.dart';
 import 'package:shop_delivery_system/screen/we/support_page.dart';
 import 'package:shop_delivery_system/services/model/order_model.dart';
-
 import '../screen/cart/cart_page.dart';
 import '../screen/location/pick_address_map.dart';
 import '../screen/payment/order_success_page.dart';
@@ -35,7 +34,7 @@ class AppRoutes {
   static const String Support = "/support_page";
   static const String Aboutpage = "/about_us_page";
 
-  static String getAddressPage() => '$AddAddress';
+  static String getAddressPage() => AddAddress;
   static final routes = [
     GetPage(
         name: InitHome,
@@ -51,11 +50,11 @@ class AppRoutes {
         transition: Transition.fadeIn),
     GetPage(
         name: Addresspage,
-        page: () => AddressPage(),
+        page: () =>const AddressPage(),
         transition: Transition.fadeIn),
     GetPage(
         name: SplashScreen,
-        page: () => SplachScreen(),
+        page: () =>const SplachScreen(),
         transition: Transition.fadeIn),
     GetPage(
         name: SS,
@@ -63,7 +62,7 @@ class AppRoutes {
         transition: Transition.fadeIn),
     GetPage(
         name: LoginPage,
-        page: () => SignInPage(),
+        page: () =>const SignInPage(),
         transition: Transition.fadeIn),
     GetPage(
         name: Registerpage,
@@ -71,7 +70,7 @@ class AppRoutes {
         transition: Transition.fadeIn),
     GetPage(
         name: CartScreen,
-        page: () => CartPage(),
+        page: () => const CartPage(),
         transition: Transition.fadeIn),
     GetPage(
         name: RecommendedPage,
@@ -79,13 +78,13 @@ class AppRoutes {
         transition: Transition.fadeIn),
     GetPage(
       name: PopularPage,
-      page: () => PopularFoodDetails(),
+      page: () => const PopularFoodDetails(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: AddAddress,
       page: () {
-        return AddressPage();
+        return const AddressPage();
       },
       transition: Transition.fadeIn,
     ),

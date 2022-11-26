@@ -24,10 +24,7 @@ class AddressRepo extends GetxService {
   }
 
   Future<Response> addAddress(AddressModel addressModel) async {
-    print(addressModel.address);
-    print(addressModel.contactPersonNumber);
-    print(addressModel.contactPersonName);
-    print('///////////////////////////////');
+
     return await apiClient.postData(
         AppConstants.ADD_USER_ADDRESS, addressModel.toJson());
   }

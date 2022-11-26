@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shop_delivery_system/screen/cart/cart_page.dart';
+import 'package:shop_delivery_system/Controller/recommended_products_controller.dart';
+import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/widgets/App_Icons/app_icons.dart';
 import 'package:shop_delivery_system/widgets/text/descriptiontextwidget.dart';
 import 'package:shop_delivery_system/widgets/text/smail_text.dart';
@@ -21,15 +22,17 @@ class RecommendedFoodDetails extends StatefulWidget {
 class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
   @override
   Widget build(BuildContext context) {
-    {
-      ProductModal productModal = Get.arguments;
-      Get.find<PopularProductController>()
-          .initproduct(productModal, Get.find<CartController>());
+
       double width = MediaQuery.of(context).size.width;
       double height = MediaQuery.of(context).size.height;
+      ProductModal productModal = Get.arguments;
+      PopularProductController controller =
+          Get.find<PopularProductController>();
 
+      CartController cartController = Get.find<CartController>();
+      controller.initproduct(productModal, cartController);
       return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.white,
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -39,59 +42,65 @@ class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
                   children: [
                     GestureDetector(
                         onTap: () {
-                            Get.back();
+                          Get.back();
                         },
-                        child: AppIcons(
-                          icon: Icons.clear,
-                          backgruondcolor: Colors.white,
+                        child: const AppIcons(
+                          icon: Icons.arrow_back,
+                          backGroundColor: AppColors.white,
                           iconSize: 23,
                         )),
-                    GestureDetector(onTap: () {
-                      Get.to(() => const CartPage());
-                    }, child:
-                        GetBuilder<CartController>(builder: (cartcontroller) {
-                      return Stack(
-                        children: [
-                          AppIcons(
-                            icon: Icons.shopping_cart_outlined,
-                            backgruondcolor: Colors.white,
-                            iconSize: 23,
-                          ),
-                          cartcontroller.totalquantity>0?Positioned(
-                            left: 20,
-                            right: 1,
-
-                            child: Stack(children: [ AppIcons(
-                              icon: Icons.circle,
-                              iconSize: 18,
-                              containerSize: 18,
-                              iconColor: AppColors.mainColor,
-                            ),
-                              Positioned(
-                                // right: ,
-                                  top: 6,
-                                  left: 4,
-                                  child: SmailText(
-                                    textbody: cartcontroller.totalquantity.toString(),
-                                    color: Colors.blueGrey,
-                                  )),],),
-                          ):Container(),
-
-                        ],
-                      );
-                    })),
+                    GestureDetector(
+                        onTap: () => Get.toNamed(AppRoutes.CartScreen),
+                        child: GetBuilder<CartController>(
+                            builder: (cartController) {
+                          return Stack(
+                            children: [
+                              const AppIcons(
+                                icon: Icons.shopping_cart_outlined,
+                                backGroundColor: AppColors.white,
+                                iconSize: 23,
+                              ),
+                              cartController.totalquantity > 0
+                                  ? Positioned(
+                                      left: 20,
+                                      right: 1,
+                                      child: Stack(
+                                        children: [
+                                          const AppIcons(
+                                            icon: Icons.circle,
+                                            iconSize: 22,
+                                            containerSize: 16,
+                                            iconColor: AppColors.mainColor,
+                                          ),
+                                          Positioned(
+                                              // right: ,
+                                              top: 6,
+                                              left: 4,
+                                              child: SmailText(
+                                                textbody: cartController
+                                                    .totalquantity
+                                                    .toString(),
+                                                color: AppColors.mainBlackColor,
+                                              )),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          );
+                        })),
                   ],
                 ),
                 pinned: true,
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(20),
                   child: Container(
-                    alignment: Alignment.bottomCenter,
-                    padding: const EdgeInsets.only(bottom: 3, top: 3),
+                    alignment: Alignment.bottomLeft,
+                    padding: const EdgeInsets.only(bottom: 3, top: 3, left: 6),
                     width: width,
                     height: height * 0.05,
                     decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.white,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15))),
@@ -102,7 +111,7 @@ class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
                   ),
                 ),
                 backgroundColor: AppColors.yellowColor,
-                expandedHeight: height * 0.4,
+                expandedHeight: height * 0.55,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.network(
                     AppConstants.BASE_URL + "/uploads/" + productModal.img!,
@@ -120,8 +129,8 @@ class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
               )
             ],
           ),
-          bottomNavigationBar: GetBuilder<PopularProductController>(
-              builder: (popularController) {
+          bottomNavigationBar: GetBuilder<RecommendedProductsController>(
+              builder: (recommendController) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -130,40 +139,55 @@ class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                          margin: const EdgeInsets.only(left: 60),
-                          child: GestureDetector(
-                            onTap: () {
-                              popularController.setQuantity(false);
-                            },
-                            child: AppIcons(
-                              icon: Icons.remove,
-                              backgruondcolor: AppColors.mainColor,
-                              containerSize: 40,
-                              iconColor: Colors.white,
-                            ),
-                          )),
-                      BigText(
-                        textbody: '\$' +
-                            productModal.price.toString() +
-                            '  X  ' +
-                            popularController.inCartItems.toString(),
-                        size: 22,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 6),
+                              child: GestureDetector(
+                                onTap: () {
+                                  recommendController.setQuantity(false);
+                                },
+                                child: const AppIcons(
+                                  icon: Icons.remove,
+                                  backGroundColor: AppColors.mainColor,
+                                  containerSize: 40,
+                                  iconColor: AppColors.white,
+                                ),
+                              )),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          BigText(
+                            textbody:
+                                recommendController.inCartItems.toString(),
+                            size: 22,
+                          ),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          Container(
+                              margin: const EdgeInsets.only(right: 60),
+                              child: GestureDetector(
+                                onTap: () {
+                                  recommendController.setQuantity(true);
+                                },
+                                child: const AppIcons(
+                                  icon: Icons.add,
+                                  backGroundColor: AppColors.mainColor,
+                                  containerSize: 40,
+                                  iconSize: 24,
+                                  iconColor: AppColors.white,
+                                ),
+                              ))
+                        ],
                       ),
-                      Container(
-                          margin: const EdgeInsets.only(right: 60),
-                          child: GestureDetector(
-                            onTap: () {
-                              popularController.setQuantity(true);
-                            },
-                            child: AppIcons(
-                              icon: Icons.add,
-                              backgruondcolor: AppColors.mainColor,
-                              containerSize: 40,
-                              iconSize: 24,
-                              iconColor: Colors.white,
-                            ),
-                          ))
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: BigText(
+                            size: 24,
+                            textbody: '\$' + productModal.price.toString()),
+                      )
                     ],
                   ),
                 ),
@@ -172,12 +196,6 @@ class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
                     Container(
                       width: width,
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 15),
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff5f5f5),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
-                          )),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -185,22 +203,35 @@ class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
                             padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: Colors.white,
+                              color: AppColors.buttonBackgroundColor,
                             ),
-                            child: AppIcons(
+                            child: const AppIcons(
                               icon: Icons.heart_broken,
-                              backgruondcolor: Colors.white,
+                              backGroundColor: AppColors.white,
                               iconColor: AppColors.mainColor,
                               iconSize: 30,
                             ),
                           ),
+                          Container(
+                            alignment: Alignment.center,
+                            height: 60,
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1, color: AppColors.mainColor),
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColors.buttonBackgroundColor,
+                            ),
+                            child: BigText(
+                              textbody: 'Buy Now !',
+                              color: AppColors.mainColor,
+                            ),
+                          ),
                           GestureDetector(
                             onTap: () {
-                              popularController.addItem(
-                                  productModal, 'recommended');
+                              recommendController.addItem(productModal);
                             },
                             child: Container(
-                              width: width * 0.45,
                               height: 60,
                               padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
@@ -211,12 +242,12 @@ class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
                                 children: [
                                   BigText(
                                     textbody:
-                                        '\$' + productModal.price.toString(),
-                                    color: Colors.white,
+                                        '\$' + productModal.price!.toString(),
+                                    color: AppColors.white,
                                   ),
                                   BigText(
                                     textbody: '| Add To Cart',
-                                    color: Colors.white,
+                                    color: AppColors.white,
                                   ),
                                 ],
                               ),
@@ -231,5 +262,5 @@ class _RecommendedFoodDetailsState extends State<RecommendedFoodDetails> {
             );
           }));
     }
-  }
+
 }

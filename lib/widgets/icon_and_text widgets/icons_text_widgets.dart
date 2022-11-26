@@ -20,7 +20,7 @@ class IconsTextWidgets extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(
+         const  Icon(
               Icons.circle_sharp,
               color: AppColors.iconColor1,
             ),
@@ -33,7 +33,7 @@ class IconsTextWidgets extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(
+            const  Icon(
               Icons.location_on,
               color: AppColors.mainColor,
             ),
@@ -46,7 +46,7 @@ class IconsTextWidgets extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(
+            const Icon(
               Icons.access_time_rounded,
               color: AppColors.iconColor2,
             ),

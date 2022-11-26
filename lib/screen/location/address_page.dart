@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/screen/location/pick_address_map.dart';
@@ -42,17 +41,7 @@ class _AddressPageState extends State<AddressPage> {
       Get.find<UserProfileController>().getProfileInfo();
     }
 
-    // locationController.getUserAddress();
-    // _cameraPosition = CameraPosition(
-    //   target: LatLng(
-    //     double.parse(locationController.getAddress['latitude']),
-    //     double.parse(locationController.getAddress['longitude']),
-    //   ),
-    // );
-    // _initPosition = LatLng(
-    //   double.parse(locationController.getAddress['latitude']),
-    //   double.parse(locationController.getAddress['longitude']),
-    // );
+
 
     if (locationController.addressList.isNotEmpty) {
       if (Get.find<AddressController>().getUserAddressFromLocalStorage() ==
@@ -60,13 +49,7 @@ class _AddressPageState extends State<AddressPage> {
         Get.find<AddressController>()
             .saveUserAddress(Get.find<AddressController>().addressList.last);
       }
-      // else {
-      //   _initPosition = const LatLng(3.139003, 101.686852);
-      //   _cameraPosition = const CameraPosition(
-      //     target: LatLng(3.139003, 101.686852),
-      //     zoom: 17,
-      //   );
-      // }
+
       Get.find<AddressController>().getUserAddress();
       _cameraPosition = CameraPosition(
         target: LatLng(
@@ -84,7 +67,6 @@ class _AddressPageState extends State<AddressPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Address page"),
@@ -108,8 +90,8 @@ class _AddressPageState extends State<AddressPage> {
 
           return GetBuilder<AddressController>(builder: (addressController) {
             _addressController.text =
-                '${addressController.pickplacemark.name ?? ''} ${addressController.pickplacemark.locality ?? ''} '
-                '${addressController.pickplacemark.postalCode ?? ''} ${addressController.pickplacemark.country ?? ''}';
+                '${addressController.pickPlaceMark.name ?? ''} ${addressController.pickPlaceMark.locality ?? ''} '
+                '${addressController.pickPlaceMark.postalCode ?? ''} ${addressController.pickPlaceMark.country ?? ''}';
             return SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -148,14 +130,6 @@ class _AddressPageState extends State<AddressPage> {
                               target: _initPosition,
                               zoom: 17.0,
                             ),
-                            // onTap: (latlng) {
-                            //   Get.offNamed(RouteHelper.getPickAddressPage(),
-                            //       arguments: PickAddressMap(
-                            //         fromSignup: false,
-                            //         fromAddress: true,
-                            //         googleMapController: addressController.mapController,
-                            //       ));
-                            // },
                             compassEnabled: false,
                             zoomControlsEnabled: false,
                             indoorViewEnabled: true,
@@ -213,7 +187,7 @@ class _AddressPageState extends State<AddressPage> {
                   ),
                   const SizedBox(height: 20),
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding:const EdgeInsets.only(left: 20),
                     child: BigText(
                       textbody: "Delivery Address",
                     ),
@@ -226,7 +200,7 @@ class _AddressPageState extends State<AddressPage> {
                       textEditingController: _addressController),
                   const SizedBox(height: 20),
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding:const EdgeInsets.only(left: 20),
                     child: BigText(
                       textbody: "Contact name",
                     ),
@@ -240,13 +214,13 @@ class _AddressPageState extends State<AddressPage> {
                   ),
                   const SizedBox(height: 20),
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding:const EdgeInsets.only(left: 20),
                     child: BigText(
                       textbody: "Your number",
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(bottom: 15),
+                    padding:const EdgeInsets.only(bottom: 15),
                     child: InPutTextForm(
                       textEditingController: _contactNumberController,
                       hintText: "Your number",
@@ -274,9 +248,9 @@ class _AddressPageState extends State<AddressPage> {
                 left: 20,
                 right: 20,
               ),
-              decoration: BoxDecoration(
+              decoration:const BoxDecoration(
                 color: AppColors.buttonBackgroundColor,
-                borderRadius: const BorderRadius.only(
+                borderRadius:  BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
                 ),
@@ -298,13 +272,7 @@ class _AddressPageState extends State<AddressPage> {
                         longitude:
                             addressController.position.longitude.toString(),
                       );
-                      print(_addressModel.longitude+'////////////////////////////////////////////////////');
-                      print(_addressModel.latitude+'////////////////////////////////////////////////////');
-                      print(_addressModel.address+'////////////////////////////////////////////////////');
-                      print(_addressModel.contactPersonName!+'////////////////////////////////////////////////////');
-                      print(_addressModel.contactPersonNumber!+'////////////////////////////////////////////////////');
-                      print(_addressModel.addressType.toString()+'////////////////////////////////////////////////////');
-                      addressController.addAddress(_addressModel).then(
+                     addressController.addAddress(_addressModel).then(
                             (response) => {
                               if (response.isSuccessful!)
                                 {

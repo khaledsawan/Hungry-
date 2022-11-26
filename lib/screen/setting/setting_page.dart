@@ -4,7 +4,6 @@ import 'package:shop_delivery_system/Controller/auth_controller.dart';
 import 'package:shop_delivery_system/Controller/user_profile_controller.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
 import 'package:shop_delivery_system/widgets/Custom_snackpar/show_custom_snackpar_red.dart';
-
 import '../../routes/AppRoutes.dart';
 import '../../utils/theme/theme_service.dart';
 import '../../widgets/icon_than_text/icon_than_text.dart';
@@ -13,22 +12,21 @@ class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);
 
   final List locale = [
-    {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
-    {'name': 'Arabic', 'locale': Locale('ar', 'SY')},
+    {'name': 'ENGLISH', 'locale': const Locale('en', 'US')},
+    {'name': 'Arabic', 'locale': const Locale('ar', 'SY')},
   ];
   updateLanguage(Locale locale) {
     Get.back();
     Get.updateLocale(locale);
   }
 
-  getinfo() async {
+  getInfo() async {
     if(Get.find<AuthController>().isAuth()) {
       await Get.find<UserProfileController>().getProfileInfo().then((value) {
       Get.toNamed(AppRoutes.EditProfile);
-      return print(value.massage);
     });
     }else{
-      ShowCustomSnackparRed('you are not login', '');
+      showCustomSnackParRed('you are not login', '');
       Get.toNamed(AppRoutes.LoginPage);
     }
   }
@@ -37,7 +35,7 @@ class SettingPage extends StatelessWidget {
   ChangeLanguageAlertDialog(BuildContext context) {
 // set up the button
     Widget okButton = TextButton(
-      child: Text("OK"),
+      child: const Text("OK"),
       onPressed: () {},
     );
 // set up the AlertDialog
@@ -84,7 +82,7 @@ class SettingPage extends StatelessWidget {
           title: Center(
               child: Text(
             'Setting'.tr,
-            style: TextStyle(fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           )),
           backgroundColor: AppColors.mainColor,
         ),
@@ -130,7 +128,7 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      Divider(
+                      const Divider(
                         color: AppColors.textColor,
                       ),
                       SizedBox(
@@ -146,8 +144,7 @@ class SettingPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              print('tapped');
-                              getinfo();
+                              getInfo();
                             },
                             child: const SizedBox(
                                 width: 35,
@@ -159,7 +156,7 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      Divider(
+                      const Divider(
                         color: AppColors.textColor,
                       ),
                       SizedBox(
@@ -192,7 +189,7 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      Divider(
+                      const Divider(
                         color: AppColors.textColor,
                       ),
                       SizedBox(
@@ -208,7 +205,6 @@ class SettingPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              print('tapped');
                               Get.toNamed(AppRoutes.Support);
                             },
                             child: const SizedBox(
@@ -221,7 +217,7 @@ class SettingPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      Divider(
+                      const  Divider(
                         color: AppColors.textColor,
                       ),
                       SizedBox(
@@ -237,7 +233,6 @@ class SettingPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              print('tapped');
                               Get.toNamed(AppRoutes.Aboutpage);
                             },
                             child: const SizedBox(

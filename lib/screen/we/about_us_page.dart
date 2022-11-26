@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:shop_delivery_system/widgets/icon_than_text/icon_than_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/colors.dart';
@@ -41,14 +40,14 @@ class AboutUsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
-          title:  Text(
+          title: const Text(
             'Who we are',
             style: TextStyle(fontSize: 24),
           )
         ),
         body: Container(
           margin: const EdgeInsets.only(left: 30, right: 30),
-          padding: EdgeInsets.only(bottom: 5),
+          padding:const EdgeInsets.only(bottom: 5),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -75,7 +74,7 @@ class AboutUsPage extends StatelessWidget {
                     textColor: Colors.blue,
                   ),
                 ),
-                Divider(
+                const  Divider(
                   color: AppColors.textColor,
                 ),
                 SizedBox(
@@ -91,7 +90,7 @@ class AboutUsPage extends StatelessWidget {
                       color: AppColors.mainColor,
                     textColor: Colors.blue,),
                 ),
-                Divider(
+                const Divider(
                   color: AppColors.textColor,
                 ),
                 SizedBox(
@@ -106,7 +105,7 @@ class AboutUsPage extends StatelessWidget {
                       color: AppColors.mainColor,
                     textColor: Colors.blue,),
                 ),
-                Divider(
+                const Divider(
                   color: AppColors.textColor,
                 ),
                 SizedBox(

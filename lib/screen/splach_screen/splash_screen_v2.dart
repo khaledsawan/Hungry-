@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shop_delivery_system/routes/AppRoutes.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
 import '../../Controller/popular_products_controller.dart';
 import '../../Controller/recommended_products_controller.dart';
-import '../home/home_page.dart';
 
 class SplashScreenV2 extends StatefulWidget {
+  const SplashScreenV2({Key? key}) : super(key: key);
+
   @override
   _SplashScreenV2State createState() => _SplashScreenV2State();
 }
@@ -19,7 +19,7 @@ class _SplashScreenV2State extends State<SplashScreenV2>
   double _containerSize = 1.5;
   double _textOpacity = 0.0;
   double _containerOpacity = 0.0;
-  _loadResourses() async {
+  _loadRes() async {
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductsController>().getRecommendedProductList();
   }
@@ -29,9 +29,9 @@ class _SplashScreenV2State extends State<SplashScreenV2>
   @override
   void initState() {
     super.initState();
-    _loadResourses();
+    _loadRes();
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
+        AnimationController(vsync: this, duration:const Duration(seconds: 3));
 
     animation1 = Tween<double>(begin: 40, end: 20).animate(CurvedAnimation(
         parent: _controller, curve: Curves.fastLinearToSlowEaseIn))
@@ -43,23 +43,21 @@ class _SplashScreenV2State extends State<SplashScreenV2>
 
     _controller.forward();
 
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       setState(() {
         _fontSize = 1.06;
       });
     });
 
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       setState(() {
         _containerSize = 2;
         _containerOpacity = 1;
       });
     });
 
-    Timer(Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 4), () {
       setState(() {
-        
-       // Navigator.pushReplacement(context, PageTransition(const HomePage()));
         Get.offAllNamed(AppRoutes.InitHome);
       });
     });
@@ -83,12 +81,12 @@ class _SplashScreenV2State extends State<SplashScreenV2>
           Column(
             children: [
               AnimatedContainer(
-                  duration: Duration(milliseconds: 2000),
+                  duration:const Duration(milliseconds: 2000),
                   curve: Curves.fastLinearToSlowEaseIn,
                   height: height / _fontSize
               ),
               AnimatedOpacity(
-                duration: Duration(milliseconds: 1000),
+                duration:const Duration(milliseconds: 1000),
                 opacity: _textOpacity,
                 child: Text(
                   'Hungry!!!',
@@ -103,11 +101,11 @@ class _SplashScreenV2State extends State<SplashScreenV2>
           ),
           Center(
             child: AnimatedOpacity(
-              duration: Duration(milliseconds: 2000),
+              duration:const Duration(milliseconds: 2000),
               curve: Curves.fastLinearToSlowEaseIn,
               opacity: _containerOpacity,
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 2000),
+                duration:const Duration(milliseconds: 2000),
                 curve: Curves.fastLinearToSlowEaseIn,
                 height: width / _containerSize,
                 width: width / _containerSize,
@@ -118,7 +116,7 @@ class _SplashScreenV2State extends State<SplashScreenV2>
                 ),
                 // child: Image.asset('assets/images/file_name.png')
                 child: Center(
-                  child: Container(
+                  child: SizedBox(
                     width: width * 0.7,
                     height: height * 0.4,
                     child: Column(
@@ -145,7 +143,7 @@ class PageTransition extends PageRouteBuilder {
   PageTransition(this.page)
       : super(
     pageBuilder: (context, animation, anotherAnimation) => page,
-    transitionDuration: Duration(milliseconds: 2000),
+    transitionDuration:const Duration(milliseconds: 2000),
     transitionsBuilder: (context, animation, anotherAnimation, child) {
       animation = CurvedAnimation(
 

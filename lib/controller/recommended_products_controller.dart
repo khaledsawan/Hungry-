@@ -6,9 +6,9 @@ import '../utils/colors.dart';
 import 'cart_controller.dart';
 
 class RecommendedProductsController extends GetxController {
-  late RecommendedProductsRepo recommenedproductrepo;
+  late RecommendedProductsRepo recommendProductRepo;
 
-  RecommendedProductsController({required this.recommenedproductrepo});
+  RecommendedProductsController({required this.recommendProductRepo});
 
   late List<ProductModal> _productList = [];
   List<ProductModal> get recommendedProductList => _productList;
@@ -24,34 +24,36 @@ class RecommendedProductsController extends GetxController {
   int _inCartItems = 0;
   int get inCartItems => _inCartItems + _quantity;
 
+  String priceToString(int itemPrice){
+    return (inCartItems*itemPrice).toString();
+  }
+
   Future<void> getRecommendedProductList() async {
-    Response response = await recommenedproductrepo.GetProductList();
+    Response response = await recommendProductRepo.GetProductList();
     _isLoaded = true;
     if (response.statusCode == 200) {
       _productList = [];
       _productList.addAll(Product.fromJson(response.body).products);
-      print(_productList);
       _isLoaded = false;
       update();
     } else {
       _isLoaded = false;
-      print("No products");
     }
   }
 
-  void initproduct(ProductModal productModal, CartController cart) {
+  void initProduct(ProductModal productModal, CartController cart) {
     _quantity = 0;
     _inCartItems = 0;
     _cartController = cart;
     bool exist = false;
-    exist = _cartController.isExset(productModal);
+    exist = _cartController.isExit(productModal);
     if (exist) {
-      _inCartItems = cart.cartitemsquantity(productModal);
+      _inCartItems = cart.cartItemsQuantity(productModal);
     }
   }
 
-  void setQuantity(bool isincrement) {
-    if (isincrement) {
+  void setQuantity(bool isIncrement) {
+    if (isIncrement) {
       _quantity = checkQuantity(_quantity + 1);
     } else {
       _quantity = checkQuantity(_quantity - 1);
@@ -60,25 +62,26 @@ class RecommendedProductsController extends GetxController {
   }
 
   void addItem(ProductModal productModal) {
-    _cartController.additem(productModal, _quantity, 'recommended');
+    _cartController.addItem(productModal, _quantity, 'recommended');
     _quantity = 0;
-    _inCartItems = _cartController.cartitemsquantity(productModal);
+    _inCartItems = _cartController.cartItemsQuantity(productModal);
   }
 
   int checkQuantity(int quantity) {
     if ((_inCartItems + _quantity) < 0) {
       Get.snackbar('Item count', 'You can\'t put less than 0',
-          colorText: Colors.white, backgroundColor: AppColors.mainColor);
+          colorText: AppColors.white, backgroundColor: AppColors.mainColor);
       return 0;
     } else if ((_inCartItems + _quantity) > 20) {
       Get.snackbar('Item count', 'You can\'t put an food',
-          colorText: Colors.white, backgroundColor: AppColors.mainColor);
+          colorText: AppColors.white, backgroundColor: AppColors.mainColor);
       return 20;
     }
     return quantity;
   }
 
-  int get totalitems {
-    return _cartController.totalquantity;
+  int get totalItems {
+    return _cartController.totalQuantity;
   }
+
 }

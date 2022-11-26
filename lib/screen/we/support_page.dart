@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_delivery_system/widgets/button/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../utils/colors.dart';
 
 class SupportPage extends StatelessWidget {
@@ -85,7 +83,7 @@ class SupportPage extends StatelessWidget {
                     child: const Center(
                         child: Text(
                       'Contact Us',
-                      style: TextStyle(color: Colors.white, fontSize: 23),
+                      style: TextStyle(color: AppColors.white, fontSize: 23),
                     )),
                   ),
                 )

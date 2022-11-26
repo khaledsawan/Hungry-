@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import '../../utils/colors.dart';
 
 class AppIcons extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
   final double containerSize;
   final double iconSize;
-  final Color backgruondcolor;
-  AppIcons(
+  final Color backGroundColor;
+  const AppIcons(
       {Key? key,
       required this.icon,
-      this.iconColor = const Color(0xFF8f837f),
+      this.iconColor = AppColors.black,
       this.containerSize = 40,
       this.iconSize = 18,
-      this.backgruondcolor = const Color(0xFFf7f6ff), })
+      this.backGroundColor = const Color(0xFFf7f6ff), })
       : super(key: key);
 
   @override
@@ -20,10 +21,9 @@ class AppIcons extends StatelessWidget {
     return Container(
       width: containerSize,
       height: containerSize,
-     // color: backgruondcolor,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(containerSize / 2),
-          color: backgruondcolor),
+          color: backGroundColor),
       child: Icon(
         icon,
         color: iconColor,

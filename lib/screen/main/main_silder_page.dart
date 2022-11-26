@@ -12,30 +12,29 @@ import 'package:shop_delivery_system/widgets/text/smail_text.dart';
 import '../../Services/model/product_model.dart';
 
 
-class MainSilederPage extends StatefulWidget {
-  const MainSilederPage({Key? key}) : super(key: key);
+class MainSliderPage extends StatefulWidget {
+  const MainSliderPage({Key? key}) : super(key: key);
 
   @override
-  State<MainSilederPage> createState() => _MainSilederPageState();
+  State<MainSliderPage> createState() => _MainSliderPageState();
 }
 
-class _MainSilederPageState extends State<MainSilederPage> {
-  PageController _pagecontroller = PageController(viewportFraction: 0.85);
+class _MainSliderPageState extends State<MainSliderPage> {
+  final PageController _pageController = PageController(viewportFraction: 0.85);
   var currPageValue = 0.0;
   @override
   void initState(){
     super.initState();
-    _pagecontroller.addListener(() {
+    _pageController.addListener(() {
       setState(() {
-        currPageValue=  _pagecontroller.page!;
-        print(currPageValue);
+        currPageValue=  _pageController.page!;
       });
     });
   }
   @override
   void dispose() {
     super.dispose();
-    _pagecontroller.dispose();
+    _pageController.dispose();
   }
   late double height;
   late double width;
@@ -54,36 +53,36 @@ class _MainSilederPageState extends State<MainSilederPage> {
           GetBuilder<PopularProductController>(
             builder: (popularController) {
               return !popularController.isLoaded
-                  ? Container(margin: EdgeInsets.only(top: 5),
-                padding: EdgeInsets.only(top:5),
+                  ? Container(margin: const EdgeInsets.only(top: 5),
+                padding:const EdgeInsets.only(top:5),
                       height: height * 0.40,
                       color: Colors.white,
                       child: PageView.builder(
-                          controller: _pagecontroller,
-                          physics:  BouncingScrollPhysics(),
+                          controller: _pageController,
+                          physics: const BouncingScrollPhysics(),
                           itemCount:
                               popularController.popularProductList.length,
                           itemBuilder: (context, index) {
-                            return _buildPageItem_popular(index,
+                            return _buildPageItemPopular(index,
                                 popularController.popularProductList[index]);
                           }),
                     )
-                  : CircularProgressIndicator(
+                  :const CircularProgressIndicator(
                       color: AppColors.mainColor,
                     );
             },
           ),
-          GetBuilder<PopularProductController>(builder: (popularcontroller) {
+          GetBuilder<PopularProductController>(builder: (popularController) {
             return Container(
               color: Colors.white,
               child: DotsIndicator(
-                dotsCount: popularcontroller.popularProductList.isEmpty
+                dotsCount: popularController.popularProductList.isEmpty
                     ? 1
-                    : popularcontroller.popularProductList.length,
+                    : popularController.popularProductList.length,
                 position: currPageValue,
                 decorator: DotsDecorator(
-                  size:  Size.square(9.0),
-                  activeSize:  Size(18.0, 9.0),
+                  size:const  Size.square(9.0),
+                  activeSize:const  Size(18.0, 9.0),
                   activeShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0)),
                 ),
@@ -122,7 +121,7 @@ class _MainSilederPageState extends State<MainSilederPage> {
             builder: (recommended) {
               return ListView.builder(
                 shrinkWrap: true,
-                physics:  NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: recommended.recommendedProductList.length,
                 itemBuilder: (context, index) {
                   return _buildPageRecommended(
@@ -136,7 +135,7 @@ class _MainSilederPageState extends State<MainSilederPage> {
     );
   }
 
-  _buildPageRecommended(int index, ProductModal productrecommend) {
+  _buildPageRecommended(int index, ProductModal productRecommend) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -144,7 +143,7 @@ class _MainSilederPageState extends State<MainSilederPage> {
       ),
       child: GestureDetector(
         onTap: () {
-          Get.toNamed(AppRoutes.RecommendedPage, arguments: productrecommend);
+          Get.toNamed(AppRoutes.RecommendedPage, arguments: productRecommend);
         },
         child: Row(
           children: [
@@ -158,7 +157,7 @@ class _MainSilederPageState extends State<MainSilederPage> {
                 image: DecorationImage(
                   image: NetworkImage(AppConstants.BASE_URL +
                       "/uploads/" +
-                      productrecommend.img!),
+                      productRecommend.img!),
                   fit: BoxFit.cover
                 ),
                 borderRadius: BorderRadius.circular(30),
@@ -168,7 +167,7 @@ class _MainSilederPageState extends State<MainSilederPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BigText(textbody: productrecommend.name!),
+                  BigText(textbody: productRecommend.name!),
                   const SizedBox(
                     height: 15,
                   ),
@@ -195,7 +194,7 @@ class _MainSilederPageState extends State<MainSilederPage> {
     );
   }
 
-  _buildPageItem_popular(int index, ProductModal productPopular) {
+  _buildPageItemPopular(int index, ProductModal productPopular) {
     double _scaleFactor = 0.8;
     Matrix4 matrix = Matrix4.identity();
     if (index == currPageValue.floor()) {
@@ -249,7 +248,7 @@ class _MainSilederPageState extends State<MainSilederPage> {
                           spreadRadius: 1.0,
                         ), //BoxShadow
                         BoxShadow(
-                          color: Colors.white,
+                          color:  AppColors.white,
                           offset: Offset(0.0, 0.0),
                           blurRadius: 0.0,
                           spreadRadius: 0.0,
@@ -273,14 +272,14 @@ class _MainSilederPageState extends State<MainSilederPage> {
                     height: 105,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
+                        color:  AppColors.white,
                         boxShadow: const [
                           BoxShadow(
-                              color: Color(0xFFe8e8e8),
+                              color: AppColors.white,
                               blurRadius: 5.0,
                               offset: Offset(0, 5)),
-                          BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                          BoxShadow(color: Colors.white, offset: Offset(5, 0))
+                          BoxShadow(color: AppColors.white, offset: Offset(-5, 0)),
+                          BoxShadow(color:  AppColors.white, offset: Offset(5, 0))
                         ]),
                     child: Container(
                       padding: const EdgeInsets.only(left: 15, right: 15),

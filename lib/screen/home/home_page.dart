@@ -1,15 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shop_delivery_system/screen/cart/cart_history_page.dart';
-import 'package:shop_delivery_system/screen/cart/cart_page.dart';
 import 'package:shop_delivery_system/screen/main/main_food_page.dart';
 import 'package:shop_delivery_system/screen/setting/setting_page.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
-import 'package:shop_delivery_system/widgets/button/custom_button.dart';
-
 import '../user profile/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,32 +35,32 @@ class _HomePageState extends State<HomePage> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
+        icon: const Icon(CupertinoIcons.home),
         title: ("Home"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: AppColors.yellowColor,
       ),
 
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.archivebox_fill),
+        icon:const Icon(CupertinoIcons.archivebox_fill),
         title: ("Archie"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: AppColors.yellowColor,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.cart),
+        icon:const Icon(CupertinoIcons.cart),
         title: ("cart"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: AppColors.yellowColor,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
+        icon: const Icon(CupertinoIcons.person),
         title: ("ME"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: AppColors.yellowColor,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings_solid),
+        icon:const Icon(CupertinoIcons.settings_solid),
         title: ("setting"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: AppColors.yellowColor,
@@ -75,31 +70,27 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return
-
-
        PersistentTabView(
         context,
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),
         confineInSafeArea: true,
-        backgroundColor: Colors.white, // Default is Colors.white.
-        handleAndroidBackButtonPress: true, // Default is true.
+        backgroundColor: AppColors.white,
+        handleAndroidBackButtonPress: true,
         resizeToAvoidBottomInset:
-            true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-        stateManagement: true, // Default is true.
+            true,
+        stateManagement: true,
         hideNavigationBarWhenKeyboardShows:
-            true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+            true,
         decoration: NavBarDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            colorBehindNavBar: Colors.white,
+            colorBehindNavBar: AppColors.white,
             boxShadow: [
-              BoxShadow(
+              const BoxShadow(
                 color: AppColors.yellowColor,
-                offset: const Offset(
+                offset: Offset(
                   0.1,
                   0.1,
                 ),
@@ -110,19 +101,16 @@ class _HomePageState extends State<HomePage> {
         popAllScreensOnTapOfSelectedTab: true,
         popActionScreens: PopActionScreensType.all,
         itemAnimationProperties: const ItemAnimationProperties(
-          // Navigation Bar's items animation properties.
           duration: Duration(milliseconds: 200),
           curve: Curves.ease,
         ),
         screenTransitionAnimation: const ScreenTransitionAnimation(
-          // Screen transition animation on change of selected tab.
           animateTabTransition: true,
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),
         ),
         navBarStyle: NavBarStyle
-            .style12, // Choose the nav bar style with this property.
+            .style12,
       );
-
   }
 }

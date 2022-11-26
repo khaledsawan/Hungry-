@@ -19,11 +19,11 @@ class CartController extends GetxController {
   List<int> _orderTime = [];
   List<int> get orderTime => _orderTime;
 
-  additem(ProductModal productModal, int quantity, String category) {
-    var totalquantity = 0;
+  addItem(ProductModal productModal, int quantity, String category) {
+    var totalQuantity = 0;
     if (_cartItemsMap.containsKey(productModal.id)) {
       _cartItemsMap.update(productModal.id!, (value) {
-        totalquantity = value.quantity! + quantity;
+        totalQuantity = value.quantity! + quantity;
         return CartModle(
             id: value.id,
             price: value.price,
@@ -35,7 +35,7 @@ class CartController extends GetxController {
             time: DateTime.now().toString(),
             product: productModal);
       });
-      if (totalquantity <= 0) {
+      if (totalQuantity <= 0) {
         _cartItemsMap.remove(productModal.id);
       }
     } else if (quantity > 0) {
@@ -59,28 +59,28 @@ class CartController extends GetxController {
     update();
   }
 
-  bool isExset(ProductModal productModal) {
+  bool isExit(ProductModal productModal) {
     return cartItemsMap.containsKey(productModal.id) ? true : false;
   }
 
-  int cartitemsquantity(ProductModal productModal) {
-    int itemquantity = 0;
+  int cartItemsQuantity(ProductModal productModal) {
+    int itemQuantity = 0;
     cartItemsMap.forEach((key, value) {
       if (key == productModal.id) {
-        itemquantity = value.quantity!;
+        itemQuantity = value.quantity!;
       }
     });
-    return itemquantity;
+    return itemQuantity;
   }
 
-  int get totalquantity {
-    int totalquantity = 0;
+  int get totalQuantity {
+    int totalQuantity = 0;
     if(_cartItemsMap.isNotEmpty){
       _cartItemsMap.forEach((key, value) {
-        totalquantity += value.quantity!;
+        totalQuantity += value.quantity!;
       });}
 
-    return totalquantity;
+    return totalQuantity;
   }
 
   List<CartModle> get cartItems {
@@ -89,7 +89,7 @@ class CartController extends GetxController {
     }).toList();
   }
 
-  int get totalprice {
+  int get totalPrice {
     int totaling = 0;
     _cartItemsMap.forEach((key, value) {
       totaling = value.quantity! * value.price! + totaling;
@@ -97,25 +97,17 @@ class CartController extends GetxController {
     return totaling;
   }
 
-  List<CartModle> get getstorageList {
-    setListCart_Storage = cartRepo.getcartList();
+  List<CartModle> get getStorageList {
+    setListCartStorage = cartRepo.getcartList();
     return storageList;
   }
 
-  set setListCart_Storage(List<CartModle> items) {
+  set setListCartStorage(List<CartModle> items) {
     storageList = items;
     for (var element in storageList) {
       _cartItemsMap.putIfAbsent(element.product!.id!, () => element);
     }
   }
-
-  // set setListCart_Storage_History(List<CartModle> items) {
-  //   storageHistoryList = items;
-  //
-  //   for (var element in storageHistoryList) {
-  //     _cartItemsMap.putIfAbsent(element.product!.id!, () => element);
-  //   }
-  // }
 
   void addToHistory() {
     cartRepo.addToHistory();
@@ -127,17 +119,14 @@ class CartController extends GetxController {
     update();
   }
 
-  List<CartModle> get getcartHistory {
+  List<CartModle> get getCartHistory {
     return cartRepo.getCartHistory();
   }
-  clearsharedpreferences()async {
+  clearSharedPreferences()async {
   await  cartRepo.clearSharedpreferences();
   clear();
   storageList = [];
   storageHistoryList = [];
   update();
   }
-
-
-
 }

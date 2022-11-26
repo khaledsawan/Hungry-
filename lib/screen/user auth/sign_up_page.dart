@@ -7,14 +7,12 @@ import 'package:shop_delivery_system/widgets/inputtextform/inputtextform.dart';
 import 'package:shop_delivery_system/widgets/text/big_text.dart';
 import 'package:shop_delivery_system/widgets/text/smail_text.dart';
 import 'package:get/get.dart';
-
 import '../../Controller/auth_controller.dart';
-import '../../Controller/user_profile_controller.dart';
 import 'sign_in_page.dart';
 
 class SignUpPage extends GetView<AuthController> {
   SignUpPage({Key? key}) : super(key: key);
-  List<String> IconList = [
+  List<String> iconList = [
     "g.png",
     "f.png",
     "t.png",
@@ -29,17 +27,17 @@ class SignUpPage extends GetView<AuthController> {
     String phone = phoneController.text.trim();
     String password = passwordController.text.trim();
     if (name.isEmpty) {
-      ShowCustomSnackparRed('enter name', 'name is empty');
+      showCustomSnackParRed('enter name', 'name is empty');
     } else if (email.isEmpty) {
-      ShowCustomSnackparRed('enter email', 'email is empty');
+      showCustomSnackParRed('enter email', 'email is empty');
     } else if (!GetUtils.isEmail(email)) {
-      ShowCustomSnackparRed('not email', 'not email');
+      showCustomSnackParRed('not email', 'not email');
     } else if (!GetUtils.isNum(phone)) {
-      ShowCustomSnackparRed('you need to enter number', 'not number');
+      showCustomSnackParRed('you need to enter number', 'not number');
     } else if (password.isEmpty) {
-      ShowCustomSnackparRed('enter password', 'password is emoty');
+      showCustomSnackParRed('enter password', 'password is emoty');
     } else if (password.length < 6) {
-      ShowCustomSnackparRed(
+      showCustomSnackParRed(
           'short password must more than 6 characters', 'short password');
     } else {
       UserSignUpModel signUpModel =
@@ -47,11 +45,9 @@ class SignUpPage extends GetView<AuthController> {
 
       authController.registeration(signUpModel).then((status) {
         if (status.isSuccessful!) {
-          print('registration is done');
-
           Get.offNamed(AppRoutes.InitHome);
         } else {
-          ShowCustomSnackparRed(
+          showCustomSnackParRed(
               status.massage.toString() +
                   ' password or phone number not correct',
               'error');
@@ -66,7 +62,7 @@ class SignUpPage extends GetView<AuthController> {
 
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         body: GetBuilder<AuthController>(builder: (controller) {
           return !controller.isloading
               ? SingleChildScrollView(
@@ -132,7 +128,7 @@ class SignUpPage extends GetView<AuthController> {
                       child: const Center(
                         child: Text(
                           'Sign Up',
-                          style: TextStyle(color: Colors.white, fontSize: 28),
+                          style: TextStyle(color: AppColors.white, fontSize: 28),
                         ),
                       ),
                     ),
@@ -155,7 +151,7 @@ class SignUpPage extends GetView<AuthController> {
                           ),
                           BigText(
                             textbody: 'already?',
-                            color: Colors.black,
+                            color:AppColors.black,
                             size: 18,
                           ),
                         ],
@@ -178,15 +174,15 @@ class SignUpPage extends GetView<AuthController> {
                               child: CircleAvatar(
                                 radius: 30,
                                 backgroundImage: AssetImage(
-                                    "assets/image/" + IconList[index]),
+                                    "assets/image/" + iconList[index]),
                               ),
                             )),
                   ),
                 ]))
-              : Center(
+              :const Center(
                   child: CircularProgressIndicator(
                     color: AppColors.mainColor,
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppColors.white,
                   ),
                 );
         }));

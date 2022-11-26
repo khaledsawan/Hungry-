@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:shop_delivery_system/Controller/cart_controller.dart';
 import 'package:shop_delivery_system/utils/AppConstants.dart';
 import 'package:shop_delivery_system/utils/colors.dart';
-import 'package:shop_delivery_system/widgets/App_Icons/app_icons.dart';
 import 'package:shop_delivery_system/widgets/text/big_text.dart';
 import 'package:shop_delivery_system/widgets/text/smail_text.dart';
 import '../../Services/model/cart_modle.dart';
@@ -21,15 +20,15 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    List<CartModle> CartHistoryList = Get.find<CartController>().getcartHistory;
+    List<CartModle> cartHistoryList = Get.find<CartController>().getcartHistory;
     Map<String, int> cartItemsPreOrder = {};
-    if (CartHistoryList.isNotEmpty) {
-      for (int i = 0; i < CartHistoryList.length; i++) {
-        if (cartItemsPreOrder.containsKey(CartHistoryList[i].time!)) {
+    if (cartHistoryList.isNotEmpty) {
+      for (int i = 0; i < cartHistoryList.length; i++) {
+        if (cartItemsPreOrder.containsKey(cartHistoryList[i].time!)) {
           cartItemsPreOrder.update(
-              CartHistoryList[i].time!, (value) => ++value);
+              cartHistoryList[i].time!, (value) => ++value);
         } else {
-          cartItemsPreOrder.addIf(true, CartHistoryList[i].time!, 1);
+          cartItemsPreOrder.addIf(true, cartHistoryList[i].time!, 1);
         }
       }
     }
@@ -39,7 +38,7 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
     }
 
     List<int> itemsPreOrder = cartOrderTimeToList();
-    int ListCounter = 0;
+    int listCounter = 0;
 
     return Scaffold(
       appBar: AppBar(
@@ -56,44 +55,13 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
       ),
       body: Column(
         children: [
-          // Container(
-          //   decoration: BoxDecoration(color: AppColors.mainColor, boxShadow: [
-          //     BoxShadow(
-          //       color: Colors.grey[400]!,
-          //       offset: const Offset(
-          //         1,
-          //         1.2,
-          //       ),
-          //       blurRadius: 1.0,
-          //       spreadRadius: 1.0,
-          //     ),
-          //   ]),
-          //   alignment: Alignment.bottomCenter,
-          //   width: width,
-          //   height: height * 0.10,
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //     children: [
-          //       BigText(
-          //         textbody: 'Your cart history',
-          //         color: Colors.white,
-          //         size: 24,
-          //       ),
-          //       AppIcons(
-          //         icon: Icons.shopping_cart_outlined,
-          //         iconColor: Colors.white,
-          //         iconSize: 30,
-          //         backgruondcolor: AppColors.mainColor,
-          //       )
-          //     ],
-          //   ),
-          // ),
+
           Expanded(
               child: Container(
             margin: const EdgeInsets.only(left: 20, right: 20, top: 8),
             width: width,
             height: 150,
-            child: CartHistoryList.isNotEmpty
+            child: cartHistoryList.isNotEmpty
                 ? ListView(
                     children: [
                       for (int i = 0; i < itemsPreOrder.length; i++)
@@ -104,9 +72,9 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                margin: EdgeInsets.only(bottom: 5),
+                                margin: const EdgeInsets.only(bottom: 5),
                                 child: BigText(
-                                  textbody: CartHistoryList[ListCounter]
+                                  textbody: cartHistoryList[listCounter]
                                       .time
                                       .toString()
                                       .substring(0, 19),
@@ -122,16 +90,14 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                                       direction: Axis.horizontal,
                                       children: List.generate(itemsPreOrder[i],
                                           (index) {
-                                        if (ListCounter <
-                                            CartHistoryList.length) {
-                                          ListCounter++;
+                                        if (listCounter <
+                                            cartHistoryList.length) {
+                                          listCounter++;
                                         }
-                                        print('test the image ////' +
-                                            CartHistoryList[i].img.toString());
                                         return index <= 2
                                             ? Container(
                                                 margin:
-                                                    EdgeInsets.only(right: 5),
+                                                const  EdgeInsets.only(right: 5),
                                                 width: 70,
                                                 height: 70,
                                                 decoration: BoxDecoration(
@@ -149,14 +115,14 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                                                             AppConstants
                                                                     .BASE_URL +
                                                                 "/uploads/" +
-                                                                CartHistoryList[
+                                                                cartHistoryList[
                                                                         index]
                                                                     .img!))),
                                               )
                                             : Container();
                                       })),
                                   Container(
-                                    margin: EdgeInsets.only(right: 5),
+                                    margin:const EdgeInsets.only(right: 5),
                                     width: 70,
                                     height: 70,
                                     child: Column(
@@ -215,7 +181,7 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                         SizedBox(
                           height: height * 0.05,
                         ),
-                        Container(
+                        SizedBox(
                             width: width - 17,
                             height: height * 0.22,
                             child: Image.asset("assets/image/empty_cart.png")),

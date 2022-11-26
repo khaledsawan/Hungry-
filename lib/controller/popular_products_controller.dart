@@ -24,23 +24,25 @@ class PopularProductController extends GetxController {
   int _inCartItems = 0;
   int get inCartItems => _inCartItems + _quantity;
 
+ String priceToString(int itemPrice){
+ return (inCartItems*itemPrice).toString();
+ }
+
   Future<void> getPopularProductList() async {
     _isLoaded = true;
     Response response = await popularProductRepo.GetProductList();
     if (response.statusCode == 200) {
       _productList = [];
       _productList.addAll(Product.fromJson(response.body).products);
-      print(_productList);
       _isLoaded = false;
       update();
     } else {
-      print("No products");
       _isLoaded = false;
     }
     _isLoaded = false;
   }
 
-  void initproduct(ProductModal productModal, CartController cart) {
+  void initProduct(ProductModal productModal, CartController cart) {
     _quantity = 0;
     _inCartItems = 0;
     _cartController = cart;
@@ -51,8 +53,8 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void setQuantity(bool isincrement) {
-    if (isincrement) {
+  void setQuantity(bool isIncrement) {
+    if (isIncrement) {
       if ((_inCartItems + _quantity == 20)) {
         _quantity = 20;
       } else {
@@ -72,7 +74,6 @@ class PopularProductController extends GetxController {
     _cartController.additem(productModal, _quantity, category);
     _quantity = 0;
     _inCartItems = _cartController.cartitemsquantity(productModal);
-    print(_cartController.cartItems);
     update();
   }
 
@@ -89,7 +90,7 @@ class PopularProductController extends GetxController {
     return quantity;
   }
 
-  int get totalitems {
+  int get totalItems {
     return _cartController.totalquantity;
   }
 }

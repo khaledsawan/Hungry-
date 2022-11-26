@@ -8,18 +8,17 @@ import '../Services/model/response_model.dart';
 import '../widgets/Custom_snackpar/show_custom_snakpar_green.dart';
 
 class UserProfileController extends GetxController implements GetxService {
-  late UserProfileRepo userProfileReop;
-  UserProfileController({required this.userProfileReop});
+  late UserProfileRepo userProfileRepo;
+  UserProfileController({required this.userProfileRepo});
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
   UserProfileModel? _userProfileModel;
   UserProfileModel? get userProfileModel => _userProfileModel;
 
   Future<ResponseModel> getProfileInfo() async {
-    print('/////getProfileInfo');
     _isLoaded = true;
      ResponseModel responseModel;
-    Response response = await userProfileReop.getUserInfo();
+    Response response = await userProfileRepo.getUserInfo();
     if (response.statusCode == 200) {
       _isLoaded = false;
       _userProfileModel = UserProfileModel.fromJson(response.body);
@@ -34,23 +33,21 @@ class UserProfileController extends GetxController implements GetxService {
     return responseModel;
   }
   Future<ResponseModel> updateUserProfile(UpdateProfileModel updateProfileModel) async {
-    print('/////updateUserProfile');
     _isLoaded = true;
     ResponseModel responseModel;
-    Response response = await userProfileReop.updateUserProfile(updateProfileModel);
+    Response response = await userProfileRepo.updateUserProfile(updateProfileModel);
     if (response.statusCode == 200) {
       _isLoaded = false;
       responseModel = ResponseModel(massage: 'Successful', isSuccessful: true);
-      ShowCustomSnackparGreen('profile update successful', '');
+      showCustomSnackParGreen('profile update successful', '');
     } else {
       _isLoaded = false;
       _userProfileModel;
       responseModel = ResponseModel(massage: 'failed', isSuccessful: false);
-      ShowCustomSnackparRed('try ageing', '');
+      showCustomSnackParRed('try ageing', '');
     }
     _isLoaded = false;
-    update();
-    return responseModel;
+return responseModel;
   }
 
 }
